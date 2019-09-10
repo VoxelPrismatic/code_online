@@ -12,7 +12,8 @@
                     stdout += "\n";
                 };})()
             var script = document.createElement("SCRIPT");
-            var tokens = (document.URL).split("?");
+            var url = document.URL+"";
+            var tokens = url.split("?");
             var code = "";
             for (token of tokens) {
                 if (token.search("code=")==0) {
