@@ -21,9 +21,9 @@
                 }
             }
             code += ";console.log('[COMPLETED]');";
-            document.write(code);
+            document.write(code+"<br >");
             document.write("EXECUTING <br >");
-            script.appendChild(code);
+            script.appendChild("console.log(2);");
             document.body.appendChild(script);
             document.write(stdout);
         </script>
