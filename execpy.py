@@ -10,7 +10,7 @@ for token in tokens:
         code = token[5:]
 temp_dict = {}
 out = io.StringIO()
-expr('def fn():\n'+textwrap.indent(stdinp, "     "), temp_dict)
+exec('def fn():\n'+textwrap.indent(stdinp, "     "), temp_dict)
 stdrtn, stdout, stderr, stdinp = "", "", "", ""
 sysinp = document.createElement("DIV")
 sysout = document.createElement("DIV")
@@ -33,7 +33,7 @@ txterr = document.createTextNode(stderr or "*~")
 sysinp.append(txtinp)
 sysout.append(txtout)
 sysrtn.append(txtrtn)
-syserr.append(txterr);
+syserr.append(txterr)
 document.body.append(sysinp)
 document.body.append(sysout)
 document.body.append(syserr)
