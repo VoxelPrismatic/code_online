@@ -14,7 +14,7 @@
                         stdout += arg+"";
                     }
                     stdout += "\n";
-                };})()
+                };})();
             var script = document.createElement("SCRIPT");
             var url = document.URL+"";
             var tokens = url.split("?");
@@ -33,7 +33,7 @@
             syserr.style.color = "#ff0000ff";
             var err = "[NO ERRORS]"
             try {
-                rtn = (eval("(function(){"+code+"};)()") || "[NoneType]");
+                var rtn = (eval("(function(){"+code+";};)();") || "[NoneType]");
             } catch(ex) {
                 err = ex.message;
             }
