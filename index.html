@@ -6,23 +6,16 @@
     </head>
     <body style="background-color: #112222ff; color: #ffffffff; font-family: Ubuntu Mono;">
         <script>
-          try {
-            var stdout = "";
-            (function(){
-                oldLog = console.log;
-                console.log = function(...args){ 
-                    for (arg of args) {
-                        stdout += arg+"";
-                    }
-                    stdout += "\n";
-                };})();
-            var script = document.createElement("SCRIPT");
             var url = document.URL+"";
             var tokens = url.split("?");
             var code = "";
+            var lang = "";
             for (token of tokens) {
                 if (token.search("code=")==0) {
                     code += token.slice(5)+"";
+                }
+                if (token.search("lang=")==0) {
+                    lang += token.slice(5)+"";
                 }
             }
             code = decodeURIComponent(code)+"";
@@ -34,16 +27,38 @@
             sysout.style.color = "#00ffffff";
             sysrtn.style.color = "#00ff00ff";
             syserr.style.color = "#ff0000ff";
-            var err = "";
-            try {
-                var rtn = eval("(function(){"+code+";})();");
-            } catch(ex) {
-                err = ex.message;
+            var stderr = "";
+            var stdout = "";
+            var javakw = ["java"];
+            var pykw = ["py", "python"];
+            var jskw = ["js", "javascript"];
+        </script>
+        <script>
+            if (jskw.indexOf(lang) > -1) {
+                (function(){
+                    oldLog = console.log;
+                    console.log = function(...args){ 
+                        for (arg of args) {
+                            stdout += arg+"";
+                        }
+                        stdout += "\n";
+                    };})();
+                try {
+                    var stdrtn = eval("(function(){"+code+";})();");
+                } catch(ex) {
+                    stderr = ex.message;
+                }
             }
+            else {
+                stderr = "'?lang=' tag not found in URL";
+                stdout = "Lang Support: 'js', 'javascript'";
+            }
+        </script>
+        <script>
             var txtinp = document.createTextNode(code || "~");
             var txtout = document.createTextNode(stdout || "~");
-            var txtrtn = document.createTextNode(typeof rtn+" ] "+rtn);
-            var txterr = document.createTextNode(err || "~");
+            var txtrtn = document.createTextNode((typeof stdrtn)+" ] "+stdrtn);
+            var txterr = document.createTextNode(stderr || "~");
             sysinp.appendChild(txtinp);
             sysout.appendChild(txtout);
             sysrtn.appendChild(txtrtn);
@@ -52,9 +67,6 @@
             document.body.appendChild(sysout);
             document.body.appendChild(syserr);
             document.body.appendChild(sysrtn);
-          } catch(ex) {
-              document.write("Sorry, the site broke ] "+ex.message);
-          }
         </script>
     </body>
 </html>
