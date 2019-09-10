@@ -35,7 +35,9 @@
                 executor.type = "text/python";
                 executor.src = "execpy.py";
                 document.write('LANG ] *.PY');
-                document.body.appendChild(executor);
+                try{document.body.appendChild(executor);}
+                catch(ex){document.body.write(ex.message);}
+                
             }
             
             // Not supported
