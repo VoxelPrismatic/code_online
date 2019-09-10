@@ -24,7 +24,7 @@
                     code += token.slice(5)+"";
                 }
             }
-            code = decodeURIComponent(encoded.replace(/\+/g,  " "))+"";
+            code = decodeURIComponent(code.replace(/\+/g,  " "))+"";
             var exec = document.createTextNode(code);
             script.appendChild(exec);
             document.body.appendChild(script);
