@@ -11,11 +11,14 @@
                     }
                     stdout += "\n";
                 };})()
+            document.write("redirect console.log");
             var script = document.createElement("SCRIPT");
             var url = document.URL+"";
             var tokens = url.split("?");
             var code = "";
+            document.write("vars");
             for (token of tokens) {
+                document.write("tokens");
                 if (token.search("code=")==0) {
                     code = token.slice(5);
                 }
