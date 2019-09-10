@@ -2,6 +2,7 @@ import textwrap
 from browser import document as doc, alert
 import traceback, io
 from contextlib import redirect_stdout as rdout
+doc.write('NANI')
 url = str(doc.URL)
 code = ""
 tokens = url.split("?.")
