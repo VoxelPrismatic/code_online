@@ -4,7 +4,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Mono"/>
         <title>CODE ONLINE ;]</title>
     </head>
-    <body style="background-color: #112222ff; color: #00ffffff; font-family: Ubuntu Mono;">
+    <body style="background-color: #112222ff; font-family: Ubuntu Mono;">
         <script>
             var stdout = "";
             (function(){
@@ -25,9 +25,23 @@
                 }
             }
             code = decodeURIComponent(code.replace(/\+/g,  " "))+"";
+            var sysout = document.createElement("DIV");
+            var sysrtn = document.createElement("DIV");
+            var syserr = document.createElement("DIV");
+            sysout.style.color = "#00ffffff";
+            sysrtn.style.color = "#00ff00ff";
+            syserr.style.color = "#ff0000ff";
+            var err = "[NO ERRORS]"
             rtn = (eval(code) || "[NoneType]");
-            document.write(stdout);
-            document.write(rtn);
+            var txtout = document.createTextNode(stdout);
+            var txtrtn = document.createTextNode(typeof rtn+" ] "+rtn);
+            var txterr = document.createTextNode(err);
+            sysout.appendChild(txtout);
+            sysrtn.appendChild(txtrtn);
+            syserr.appendChild(txterr);
+            document.body.appendChild(sysout);
+            document.body.appendChild(syserr);
+            document.body.appendChild(sysrtn);
         </script>
     </body>
 </html>
