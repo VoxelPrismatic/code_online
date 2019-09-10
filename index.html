@@ -26,6 +26,7 @@
             if (jskw.indexOf(lang) > -1) {
                 executor.type = "text/javascript";
                 executor.src = "execjs.js";
+                document.write(
                 document.body.appendChild(executor);
             }
             
@@ -39,7 +40,7 @@
             // Not supported
             else {
                 stderr = "'?.lang=' tag not found in URL";
-                stdout = "Lang Support: 'js', 'javascript'";
+                stdout = "Lang Support: 'js', 'javascript', 'py', 'python'";
             }
         </script>
     </body>
