@@ -26,7 +26,7 @@
             if (jskw.indexOf(lang) > -1) {
                 executor.type = "text/javascript";
                 executor.src = "execjs.js";
-                document.write('LANG ] JS');
+                document.write('LANG ] *.JS');
                 document.body.appendChild(executor);
             }
             
@@ -34,7 +34,7 @@
             else if (pykw.indexOf(lang) > -1) {
                 executor.type = "text/python";
                 executor.src = "execpy.py";
-                document.write('LANG ] PY');
+                document.write('LANG ] *.PY');
                 document.body.appendChild(executor);
             }
             
