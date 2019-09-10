@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+var stdout = "";
+  (function(){
+    oldLog = console.log
+    console.log = function(...args){ 
+      for (arg of args) {
+        stdout += arg+"";
+      }
+      stdout += "\n";
+  };})()
+  var script = document.createElement("SCRIPT");
+  var code = document.createTextNode('console.log("hi");\nconsole.log("bye");')
+  script.appendChild(code);
+  document.body.appendChild(script);
+  document.write(stdout);
+</script>
+</body>
+</html>
