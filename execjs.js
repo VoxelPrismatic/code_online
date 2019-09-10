@@ -1,3 +1,27 @@
+var url = document.URL+"";
+var tokens = url.split("?.");
+var code = "";
+var lang = "";
+for (token of tokens) {
+    if (token.search("code=")==0) {
+        code += token.slice(5)+"";
+    }
+    else if (token.search("lang=")==0) {
+        lang += token.slice(5)+"".toLowerCase();
+    }
+}
+var sysinp = document.createElement("DIV");
+var sysout = document.createElement("DIV");
+var sysrtn = document.createElement("DIV");
+var syserr = document.createElement("DIV");
+sysinp.style.color = "#ff00ffff";
+sysout.style.color = "#00ffffff";
+sysrtn.style.color = "#00ff00ff";
+syserr.style.color = "#ff0000ff";
+var stderr = "";
+var stdout = "";
+var stdinp = decodeURIComponent(code)+"";
+var stdrtn;
 (function(){
     oldLog = console.log;
     console.log = function(...args){ 
