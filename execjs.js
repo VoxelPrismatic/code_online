@@ -1,13 +1,9 @@
 var url = document.URL+"";
 var tokens = url.split("?.");
 var code = "";
-var lang = "";
 for (token of tokens) {
     if (token.search("code=")==0) {
         code += token.slice(5)+"";
-    }
-    else if (token.search("lang=")==0) {
-        lang += token.slice(5)+"".toLowerCase();
     }
 }
 var sysinp = document.createElement("DIV");
