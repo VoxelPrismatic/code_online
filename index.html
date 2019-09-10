@@ -32,7 +32,11 @@
             sysrtn.style.color = "#00ff00ff";
             syserr.style.color = "#ff0000ff";
             var err = "[NO ERRORS]"
-            rtn = (eval(code) || "[NoneType]");
+            try {
+                rtn = (eval("(function(){"+code+"};)()") || "[NoneType]");
+            } catch(ex) {
+                err = ex.message;
+            }
             var txtout = document.createTextNode(stdout);
             var txtrtn = document.createTextNode(typeof rtn+" ] "+rtn);
             var txterr = document.createTextNode(err);
