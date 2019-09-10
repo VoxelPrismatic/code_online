@@ -23,7 +23,8 @@
             code += "console.log('[COMPLETED]');";
             document.write(code+"<br >");
             document.write("EXECUTING <br >");
-            script.appendChild("console.log(2);");
+            var exec = document.createTextNode(code);
+            script.appendChild(exec);
             document.body.appendChild(script);
             document.write(stdout);
             document.write("[COMPLETED]");
