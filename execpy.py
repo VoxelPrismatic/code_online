@@ -1,6 +1,5 @@
-import textwrap
+import textwrap, html, traceback, io
 from browser import document as doc, alert
-import traceback, io
 from contextlib import redirect_stdout as rdout
 doc.write('NANI')
 url = str(doc.URL)
@@ -9,10 +8,11 @@ tokens = url.split("?.")
 for token in tokens:
     if token.startswith('code='):
         code = token[5:]
+stdinp = html.unencode(code)
 temp_dict = {}
 out = io.StringIO()
 exec('def fn():\n'+textwrap.indent(stdinp, "     "), temp_dict)
-stdrtn, stdout, stderr, stdinp = "", "", "", ""
+stdrtn, stdout, stderr = "", "", ""
 sysinp = doc.createElement("DIV")
 sysout = doc.createElement("DIV")
 syserr = doc.createElement("DIV")
