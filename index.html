@@ -25,10 +25,9 @@
                 }
             }
             code = decodeURIComponent(code.replace(/\+/g,  " "))+"";
-            var exec = document.createTextNode(code);
-            script.appendChild(exec);
-            document.body.appendChild(script);
+            rtn = (eval(code) || "[NoneType]");
             document.write(stdout);
+            document.write(rtn);
         </script>
     </body>
 </html>
