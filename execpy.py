@@ -20,6 +20,7 @@ sysinp.style.color = "#ff00ffff"
 sysout.style.color = "#00ffffff"
 sysrtn.style.color = "#00ff00ff"
 syserr.style.color = "#ff0000ff"
+doc.write('~START~')
 try: 
     with rdout(out): 
         stdrtn = temp_dict['fn']()
