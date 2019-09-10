@@ -10,60 +10,29 @@
             /* STARTS OFF */
             var url = document.URL+"";
             var tokens = url.split("?.");
-            var code = "";
             var lang = "";
             for (token of tokens) {
-                if (token.search("code=")==0) {
-                    code += token.slice(5)+"";
-                }
-                else if (token.search("lang=")==0) {
+                if (token.search("lang=")==0) {
                     lang += token.slice(5)+"".toLowerCase();
                 }
             }
-            var sysinp = document.createElement("DIV");
-            var sysout = document.createElement("DIV");
-            var sysrtn = document.createElement("DIV");
-            var syserr = document.createElement("DIV");
-            sysinp.style.color = "#ff00ffff";
-            sysout.style.color = "#00ffffff";
-            sysrtn.style.color = "#00ff00ff";
-            syserr.style.color = "#ff0000ff";
-            var stderr = "";
-            var stdout = "";
-            var stdinp = decodeURIComponent(code)+"";
-            var stdrtn;
             var javakw = ["java"];
             var cppkw = ["cpp", "c++"]
             var pykw = ["py", "python"];
             var jskw = ["js", "javascript"];
-        </script>
-        <script>
             /* LOADER */
+            var executor = document.createElement("SCRIPT");
             // JS
             if (jskw.indexOf(lang) > -1) {
-                (function(){
-                    oldLog = console.log;
-                    console.log = function(...args){ 
-                        for (arg of args) { stdout += arg+""; }
-                        stdout += "\n";
-                    };})();
-                try { stdrtn = eval("(function(){"+stdinp+";})();"); } 
-                catch(ex) { stderr = ex.message; }
+                executor.type = "text/javascript";
+                executor.src = "execjs.js";
+                document.body.appendChild(executor);
             }
             
             // PY
             else if (pykw.indexOf(lang) > -1) {
-                var executor = document.createElement("SCRIPT");
-                executor.type = "text/python"
-                var pycode = "import textwrap; from browser import document, alert;\n"
-                           + "import traceback, io; from contextlib import redirect_stdout as rdout\n"
-                           + "stdinp = \"'\"'\"'\"'\"'"+stdinp+"'\"'\"'\"'\"'\"\n"
-                           + "temp_dict = {}; out = io.StringIO()\n"
-                           + "expr(f'def fn():\n{textwrap.indent(stdinp, '     ')}', temp_dict)\n"
-                           + "try: with rdout(out): stdrtn = temp_dict['fn']()\n"
-                           + "except Exception as ex: stderr = str(ex)\n"
-                           + "else: stdout = out.get_value()\n";
-                executor.appendChild(document.createTextNode(pycode));
+                executor.type = "text/python";
+                executor.src = "execpy.py";
                 document.body.appendChild(executor);
             }
             
@@ -72,21 +41,6 @@
                 stderr = "'?.lang=' tag not found in URL";
                 stdout = "Lang Support: 'js', 'javascript'";
             }
-        </script>
-        <script defer="defer">
-            /* FINISHES THE SITE */
-            var txtinp = document.createTextNode(stdinp || "'?.code=' tag not found;");
-            var txtout = document.createTextNode(stdout.replace('\n', '<br >') || "*~");
-            var txtrtn = document.createTextNode((typeof stdrtn)+" ] "+stdrtn);
-            var txterr = document.createTextNode(stderr || "*~");
-            sysinp.appendChild(txtinp);
-            sysout.appendChild(txtout);
-            sysrtn.appendChild(txtrtn);
-            syserr.appendChild(txterr);
-            document.body.appendChild(sysinp);
-            document.body.appendChild(sysout);
-            document.body.appendChild(syserr);
-            document.body.appendChild(sysrtn);
         </script>
     </body>
 </html>
