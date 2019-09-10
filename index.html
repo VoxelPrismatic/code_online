@@ -4,8 +4,9 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Mono"/>
         <title>CODE ONLINE ;]</title>
     </head>
-    <body style="background-color: #112222ff; font-family: Ubuntu Mono;">
+    <body style="background-color: #112222ff; color: #ffffffff; font-family: Ubuntu Mono;">
         <script>
+          try {
             var stdout = "";
             (function(){
                 oldLog = console.log;
@@ -46,6 +47,9 @@
             document.body.appendChild(sysout);
             document.body.appendChild(syserr);
             document.body.appendChild(sysrtn);
+          } catch(ex) {
+              document.write("Sorry, the site broke ] "+ex.message);
+          }
         </script>
     </body>
 </html>
