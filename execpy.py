@@ -26,15 +26,15 @@ try:
     stdout = str(out.get_value()).replace('\n','<br >');
 except Exception as exc: 
     stderr = str(ex)+'<br >'+' \u200b'.join(str(traceback.format_exc()).replace('\n').split())
-txtinp = document.createTextNode(stdinp or "'?.code=' tag not found;");
-txtout = document.createTextNode(stdout or "*~");
-txtrtn = document.createTextNode((str(type(stdrtn)).split("'")[1])+" ] "+stdrtn);
-txterr = document.createTextNode(stderr or "*~");
-sysinp.appendChild(txtinp);
-sysout.appendChild(txtout);
-sysrtn.appendChild(txtrtn);
-syserr.appendChild(txterr);
-document.body.appendChild(sysinp);
-document.body.appendChild(sysout);
-document.body.appendChild(syserr);
-document.body.appendChild(sysrtn);
+txtinp = document.createTextNode(stdinp or "'?.code=' tag not found;")
+txtout = document.createTextNode(stdout or "*~")
+txtrtn = document.createTextNode((str(type(stdrtn)).split("'")[1])+" ] "+stdrtn)
+txterr = document.createTextNode(stderr or "*~")
+sysinp.append(txtinp)
+sysout.append(txtout)
+sysrtn.append(txtrtn)
+syserr.append(txterr);
+document.body.append(sysinp)
+document.body.append(sysout)
+document.body.append(syserr)
+document.body.append(sysrtn)
