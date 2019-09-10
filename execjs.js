@@ -29,7 +29,7 @@ try {
     stderr = ex.message; 
 }
 var txtinp = document.createTextNode(stdinp || "'?.code=' tag not found;");
-var txtout = document.createTextNode(stdout.replace('\n', '<br>') || "*~");
+var txtout = document.createTextNode(stdout.replace('\n', '<br>.') || "*~");
 var txtrtn = document.createTextNode((typeof stdrtn)+" ] "+stdrtn);
 var txterr = document.createTextNode(stderr || "*~");
 sysinp.appendChild(txtinp);
