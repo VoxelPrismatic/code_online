@@ -26,9 +26,11 @@
                 }
             }
             code = decodeURIComponent(code.replace(/\+/g,  " "))+"";
+            var sysinp = document.createElement("DIV");
             var sysout = document.createElement("DIV");
             var sysrtn = document.createElement("DIV");
             var syserr = document.createElement("DIV");
+            sysinp.style.color = "#ffffffff";
             sysout.style.color = "#00ffffff";
             sysrtn.style.color = "#00ff00ff";
             syserr.style.color = "#ff0000ff";
@@ -38,12 +40,15 @@
             } catch(ex) {
                 err = ex.message;
             }
+            var txtinp = document.createTextNode(code);
             var txtout = document.createTextNode(stdout);
             var txtrtn = document.createTextNode(typeof rtn+" ] "+rtn);
             var txterr = document.createTextNode(err);
+            sysinp.appendChild(txtinp);
             sysout.appendChild(txtout);
             sysrtn.appendChild(txtrtn);
             syserr.appendChild(txterr);
+            document.body.appendChild(sysinp);
             document.body.appendChild(sysout);
             document.body.appendChild(syserr);
             document.body.appendChild(sysrtn);
