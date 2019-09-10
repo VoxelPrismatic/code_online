@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <script src="http://brython.info/src/brython.js"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Mono"/>
         <title>CODE ONLINE ;]</title>
     </head>
     <body style="background-color: #112222ff; color: #ffffffff; font-family: Ubuntu Mono;">
         <script>
+            /* STARTS OFF */
             var url = document.URL+"";
             var tokens = url.split("?.");
             var code = "";
@@ -14,11 +16,10 @@
                 if (token.search("code=")==0) {
                     code += token.slice(5)+"";
                 }
-                if (token.search("lang=")==0) {
-                    lang += token.slice(5)+"";
+                else if (token.search("lang=")==0) {
+                    lang += token.slice(5)+"".toLowerCase();
                 }
             }
-            code = decodeURIComponent(code)+"";
             var sysinp = document.createElement("DIV");
             var sysout = document.createElement("DIV");
             var sysrtn = document.createElement("DIV");
@@ -29,34 +30,53 @@
             syserr.style.color = "#ff0000ff";
             var stderr = "";
             var stdout = "";
+            var stdinp = decodeURIComponent(code)+"";
+            var stdrtn;
             var javakw = ["java"];
+            var cppkw = ["cpp", "c++"]
             var pykw = ["py", "python"];
             var jskw = ["js", "javascript"];
         </script>
         <script>
+            /* LOADER */
+            // JS
             if (jskw.indexOf(lang) > -1) {
                 (function(){
                     oldLog = console.log;
                     console.log = function(...args){ 
-                        for (arg of args) {
-                            stdout += arg+"";
-                        }
+                        for (arg of args) { stdout += arg+""; }
                         stdout += "\n";
                     };})();
-                try {
-                    var stdrtn = eval("(function(){"+code+";})();");
-                } catch(ex) {
-                    stderr = ex.message;
-                }
+                try { stdrtn = eval("(function(){"+stdinp+";})();"); } 
+                catch(ex) { stderr = ex.message; }
             }
+            
+            // PY
+            else if (pykw.indexOf(lang) > -1) {
+                var executor = document.createElement("SCRIPT");
+                executor.type = "text/python"
+                var pycode = "import textwrap; from browser import document, alert;\n"
+                           + "import traceback, io; from contextlib import redirect_stdout as rdout\n"
+                           + "stdinp = \"'\"'\"'\"'\"'"+stdinp+"'\"'\"'\"'\"'\"\n"
+                           + "temp_dict = {}; out = io.StringIO()\n"
+                           + "expr(f'def fn():\n{textwrap.indent(stdinp, '     ')}', temp_dict)\n"
+                           + "try: with rdout(out): stdrtn = temp_dict['fn']()\n"
+                           + "except Exception as ex: stderr = str(ex)\n"
+                           + "else: stdout = out.get_value()\n";
+                executor.appendChild(document.createTextNode(pycode));
+                document.body.appendChild(executor);
+            }
+            
+            // Not supported
             else {
-                stderr = "'?lang=' tag not found in URL";
+                stderr = "'?.lang=' tag not found in URL";
                 stdout = "Lang Support: 'js', 'javascript'";
             }
         </script>
-        <script>
-            var txtinp = document.createTextNode(code || "~");
-            var txtout = document.createTextNode(stdout || "~");
+        <script defer="defer">
+            /* FINISHES THE SITE */
+            var txtinp = document.createTextNode(stdinp || "'?.code=' tag not found;");
+            var txtout = document.createTextNode(stdout.replace('\n', '<br >') || "~");
             var txtrtn = document.createTextNode((typeof stdrtn)+" ] "+stdrtn);
             var txterr = document.createTextNode(stderr || "~");
             sysinp.appendChild(txtinp);
