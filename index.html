@@ -2,7 +2,6 @@
 <html>
     <body>
         <script>
-            document.write("[STARTING]<br >");
             var stdout = "";
             (function(){
                 oldLog = console.log;
@@ -21,9 +20,6 @@
                     code += token.slice(5)+"";
                 }
             }
-            code += "console.log('[COMPLETED]');";
-            document.write(code+"<br >");
-            document.write("[EXECUTING]<br >");
             var exec = document.createTextNode(code);
             script.appendChild(exec);
             document.body.appendChild(script);
