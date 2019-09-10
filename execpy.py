@@ -12,10 +12,10 @@ temp_dict = {}
 out = io.StringIO()
 exec('def fn():\n'+textwrap.indent(stdinp, "     "), temp_dict)
 stdrtn, stdout, stderr, stdinp = "", "", "", ""
-sysinp = document.createElement("DIV")
-sysout = document.createElement("DIV")
-syserr = document.createElement("DIV")
-sysrtn = document.createElement("DIV")
+sysinp = doc.createElement("DIV")
+sysout = doc.createElement("DIV")
+syserr = doc.createElement("DIV")
+sysrtn = doc.createElement("DIV")
 sysinp.style.color = "#ff00ffff"
 sysout.style.color = "#00ffffff"
 sysrtn.style.color = "#00ff00ff"
@@ -26,15 +26,15 @@ try:
     stdout = str(out.get_value()).replace('\n','<br >');
 except Exception as exc: 
     stderr = str(ex)+'<br >'+' \u200b'.join(str(traceback.format_exc()).replace('\n').split())
-txtinp = document.createTextNode(stdinp or "'?.code=' tag not found;")
-txtout = document.createTextNode(stdout or "*~")
-txtrtn = document.createTextNode((str(type(stdrtn)).split("'")[1])+" ] "+stdrtn)
-txterr = document.createTextNode(stderr or "*~")
+txtinp = doc.createTextNode(stdinp or "'?.code=' tag not found;")
+txtout = doc.createTextNode(stdout or "*~")
+txtrtn = doc.createTextNode((str(type(stdrtn)).split("'")[1])+" ] "+stdrtn)
+txterr = soc.createTextNode(stderr or "*~")
 sysinp.append(txtinp)
 sysout.append(txtout)
 sysrtn.append(txtrtn)
 syserr.append(txterr)
-document.body.append(sysinp)
-document.body.append(sysout)
-document.body.append(syserr)
-document.body.append(sysrtn)
+doc.body.append(sysinp)
+doc.body.append(sysout)
+doc.body.append(syserr)
+doc.body.append(sysrtn)
