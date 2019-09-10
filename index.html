@@ -34,7 +34,7 @@
             syserr.style.color = "#ff0000ff";
             var err = "[NO ERRORS]"
             try {
-                var rtn = (eval("(function(){"+code+";};)();") || "[NoneType]");
+                var rtn = eval("(function(){"+code+";})();");
             } catch(ex) {
                 err = ex.message;
             }
