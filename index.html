@@ -11,22 +11,20 @@
                     }
                     stdout += "\n";
                 };})()
-            document.write("redirect console.log");
             var script = document.createElement("SCRIPT");
             var url = document.URL+"";
             var tokens = url.split("?");
             var code = "";
-            document.write("vars");
             for (token of tokens) {
-                document.write("tokens");
                 if (token.search("code=")==0) {
                     code = token.slice(5);
                 }
             }
+            code += "\nconsole.log('[COMPLETED]');
+            document.write("EXECUTING <br >");
             script.appendChild(code);
             document.body.appendChild(script);
             document.write(stdout);
-            document.write('[COMPLETE]');
         </script>
     </body>
 </html>
