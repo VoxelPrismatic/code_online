@@ -17,11 +17,11 @@
             var code = "";
             for (token of tokens) {
                 if (token.search("code=")==0) {
-                    code = token.slice(5);
+                    code += token.slice(5)+"";
                 }
             }
             code += ";console.log('[COMPLETED]');";
-            console.log(code);
+            document.write(code);
             document.write("EXECUTING <br >");
             script.appendChild(code);
             document.body.appendChild(script);
