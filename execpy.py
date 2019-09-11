@@ -1,9 +1,8 @@
 from io import StringIO
 from urllib.parse import unquote
-from traceback import format_exc as fex
 from textwrap import indent
+from traceback import format_exc as fex
 from browser import document as doc, alert
-from contextlib import redirect_stdout as rdout
 url = str(doc.URL)
 code = ""
 tokens = url.split("?.")
@@ -15,7 +14,7 @@ if not stdinp: stdinp = "pass"
 temp_dict = {}
 out = StringIO()
 exec('def fn():\n'+indent(stdinp, "     "), temp_dict)
-stdrtn, stdout, stderr = "", "", ""
+stdrtn, stder, stdout = "", "", ""
 sysinp = doc.createElement("DIV")
 sysout = doc.createElement("DIV")
 syserr = doc.createElement("DIV")
@@ -24,10 +23,16 @@ sysinp.style.color = "#ff00ffff"
 sysout.style.color = "#00ffffff"
 sysrtn.style.color = "#00ff00ff"
 syserr.style.color = "#ff0000ff"
+old_print = print
+def print(*args, sep=' ', end='\n'):
+    global stdout
+    for arg in args:
+        stdout += f'{arg}{sep}'
+    stdout+=str(end)
+    
 try: 
     with rdout(out): 
         stdrtn = temp_dict['fn']()
-    stdout = str(out.getvalue()).replace('\n','<br />\u200b');
 except Exception as exc: 
     stderr = str(ex)+'<br />'+str(fex()).replace('\n', '<br />\u200b').replace(' ','\u200b \u200b')
 txtinp = doc.createTextNode(stdinp or "'?.code=' tag not found;")
