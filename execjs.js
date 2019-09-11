@@ -1,13 +1,7 @@
-var sysout = document.createElement("DIV");
-var sysrtn = document.createElement("DIV");
-var syserr = document.createElement("DIV");
-sysout.style.color = "#00ffffff";
-sysrtn.style.color = "#00ff00ff";
-syserr.style.color = "#ff0000ff";
 var stderr = "";
 var stdout = "";
 var stdrtn;
-var stdinp = document.getElementById("CODE").innerHTML;
+var stdinp = (document.getElementById("CODE").innerHTML || "return null;");
 (function(){
     oldLog = console.log;
     console.log = function(...args){ 
@@ -18,12 +12,11 @@ try {
 } catch(ex) { 
     stderr = ex.message; 
 }
-var txtout = document.createTextNode(stdout.replace('\n', '<br>.') || "*~");
-var txtrtn = document.createTextNode((typeof stdrtn)+" ] "+stdrtn);
-var txterr = document.createTextNode(stderr || "*~");
-sysout.appendChild(txtout);
-sysrtn.appendChild(txtrtn);
-syserr.appendChild(txterr);
-document.body.appendChild(sysout);
-document.body.appendChild(syserr);
-document.body.appendChild(sysrtn);
+stderr = (stderr || "~");
+stdout = (stdout || "~");
+stdrtn = (stdrtn || null);
+document.getElementById("SYSINP").innerHTML = stdinp.replace('\n','<br>').replace(' ','\u200b');
+document.getElementById("SYSOUT").innerHTML = stdout.replace('\n','<br>').replace(' ','\u200b');
+document.getElementById("SYSERR").innerHTML = stderr.replace('\n','<br>').replace(' ','\u200b');
+docyment.getElementById("SYSRTN").innerHTML = ((typeof stdrtn)+" ] "+stdrtn).replace('\n','<br>').replace(' ','\u200b');
+
