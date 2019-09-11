@@ -11,7 +11,7 @@ sysrtn.style.color = "#00ff00ff"
 syserr.style.color = "#ff0000ff"
 old_print = print
 def print(*args, sep=' ', end='\n'):
-    doc.write(args)
+    doc.write('w')
     for arg in args:
         stdout += f'{arg}{sep}'
     stdout+=str(end)
