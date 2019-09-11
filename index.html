@@ -9,38 +9,11 @@
         <title>CODE ONLINE ;]</title>
     </head>
     <body style="background-color: #112222ff; color: #ffffffff; font-family: Ubuntu Mono;" onload="brython()">
+        <!-- Creats vars and things -->
+        <script src="init.js"></script>
         <script>
-            /* STARTS OFF */
-            var url = decodeURIComponent(document.URL+"")+"";
-            var tokens = url.split("?.");
-            var lang = "";
-            var stdinp = "";
-            for (token of tokens) {
-                if (token.search("lang=")==0) {
-                    lang += token.slice(5)+"".toLowerCase();
-                }
-                else if (token.search("code=")==0) {
-                    stdinp += token.slice(5)+"";
-                }
-            }
-            var javakw = ["java"];
-            var cppkw = ["cpp", "c++"];
-            var pykw = ["py", "python"];
-            var jskw = ["js", "javascript"];
             /* LOADER */
             var executor = document.createElement("SCRIPT");
-            var items = ['lng','inp','out','err','rtn']
-            for (item of items) {
-                eval("var sys"+item+" = document.createElement('DIV')");
-                eval("var txt"+item+" = document.createTextNode('~');");
-                eval("sys"+item+".id = 'SYS"+item.toUpperCase()+"';");
-                eval("sys"+item+".appendChild(txt"+item+");");
-                eval("document.body.appendChild(sys"+item+");");
-            syslng.style.color = "#ffffffff";
-            sysout.style.color = "#00ffffff";
-            sysrtn.style.color = "#00ff00ff";
-            syserr.style.color = "#ff0000ff";
-            sysinp.style.color = "#ff00ffff";
             // NO CODE
             if (stdinp == "") {
                 document.getElementById("SYSLNG").innerHTML = "LANG ] *.*";
