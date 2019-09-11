@@ -1,4 +1,3 @@
-from io import StringIO
 from urllib.parse import unquote
 from textwrap import indent
 from traceback import format_exc as fex
@@ -12,9 +11,8 @@ for token in tokens:
 stdinp = unquote(code)
 if not stdinp: stdinp = "pass"
 temp_dict = {}
-out = StringIO()
 exec('def fn():\n'+indent(stdinp, "     "), temp_dict)
-stdrtn, stder, stdout = "", "", ""
+stdrtn, stderr, stdout = "", "", ""
 sysinp = doc.createElement("DIV")
 sysout = doc.createElement("DIV")
 syserr = doc.createElement("DIV")
@@ -31,8 +29,7 @@ def print(*args, sep=' ', end='\n'):
     stdout+=str(end)
     
 try: 
-    with rdout(out): 
-        stdrtn = temp_dict['fn']()
+    stdrtn = temp_dict['fn']()
 except Exception as exc: 
     stderr = str(exc)+'<br />'+str(fex()).replace('\n', '<br />\u200b').replace(' ','\u200b \u200b')
 txtinp = doc.createTextNode(stdinp or "'?.code=' tag not found;")
