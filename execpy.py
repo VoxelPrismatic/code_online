@@ -12,7 +12,7 @@ skipB = False
 stdinp = ""
 for x in range(len(code)):
     if skipA: continue
-    elif skibB: continue
+    elif skipB: continue
     elif '%' in code[x:x+3]:
         skipA, skipB = True, True
         stdinp += eval(f'"\\u00{code[x+1:x+2]}"')
