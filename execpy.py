@@ -15,9 +15,9 @@ try:
     stdrtn = tmp['fn']()
 except Exception as ex: 
     stderr = str(ex)
-sysout = (sysout or "~")
-syserr = (syserr or "~")
-sysrtn = (sysrtn or None)
+stdout = (stdout or "~")
+stderr = (stderr or "~")
+stdrtn = (stdrtn or None)
 doc.getElementById("SYSINP").innerHTML = stdinp.replace('\n','<br>').replace(' ','\u200b')
 doc.getElementById("SYSOUT").innerHTML = stdout.replace('\n','<br>').replace(' ','\u200b')
 doc.getElementById("SYSERR").innerHTML = stderr.replace('\n','<br>').replace(' ','\u200b')
