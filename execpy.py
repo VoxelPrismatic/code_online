@@ -34,7 +34,7 @@ try:
     with rdout(out): 
         stdrtn = temp_dict['fn']()
 except Exception as exc: 
-    stderr = str(ex)+'<br />'+str(fex()).replace('\n', '<br />\u200b').replace(' ','\u200b \u200b')
+    stderr = str(exc)+'<br />'+str(fex()).replace('\n', '<br />\u200b').replace(' ','\u200b \u200b')
 txtinp = doc.createTextNode(stdinp or "'?.code=' tag not found;")
 txtout = doc.createTextNode(stdout or "*~")
 txtrtn = doc.createTextNode((str(type(stdrtn)).split("'")[1])+" ] "+str(stdrtn))
