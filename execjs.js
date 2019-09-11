@@ -1,6 +1,6 @@
 var stderr = "";
 var stdout = "";
-var stdrtn;
+var stdrtn = null;
 var stdinp = (document.getElementById("SYSINP").innerHTML || "return null;");
 (function(){
     oldLog = console.log;
