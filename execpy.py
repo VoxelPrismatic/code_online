@@ -1,7 +1,6 @@
 from traceback import format_exc as fex
 from browser import document as doc, alert
 stdinp = doc.getElementById("CODE").innerHTML
-doc.write(stdinp)
 stdinp = '\n'.join('   '+line for line in stdinp.splitlines())
 stdrtn, stderr, stdout = "", "", ""
 sysout = doc.createElement("DIV")
