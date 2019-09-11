@@ -32,7 +32,7 @@
             var items = ['lng','inp','out','err','rtn']
             for (item of items) {
                 eval("var sys"+item+" = document.createElement('DIV')");
-                eval("var txt"+item+" = document.createTextNode('');");
+                eval("var txt"+item+" = document.createTextNode('~');");
                 eval("sys"+item+".id = 'SYS"+item.toUpperCase()+"';");
                 eval("sys"+item+".appendChild(txt"+item+");");
                 eval("document.body.appendChild(sys"+item+");");
