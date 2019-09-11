@@ -17,6 +17,8 @@ def print(*args, sep=' ', end='\n'):
     stdout+=str(end)
     doc.write(stdout)
 tmp = {}
+tmp.update(globals)
+del tmp['stdout'], tmp['stdinp'], tmp['stderr'], tmp['stdrtn']
 exec('def fn():\n'+stdinp, tmp)
 try: 
     stdrtn = tmp['fn']()
