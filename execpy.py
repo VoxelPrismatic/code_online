@@ -1,4 +1,3 @@
-from traceback import format_exc as fex
 from browser import document as doc, alert
 stdinp = doc.getElementById("CODE").innerHTML
 stdinp = '\n'.join('   '+line for line in stdinp.splitlines())
@@ -15,18 +14,16 @@ def print(*args, sep=' ', end='\n'):
     for arg in args:
         stdout += f'{arg}{sep}'
     stdout+=str(end)
+    doc.write(stdout)
 tmp = {}
 exec('def fn():\n'+stdinp, tmp)
 try: 
     stdrtn = tmp['fn']()
-except Exception as exc: 
-    stderr = str(exc)+'<br />'+str(fex()).replace('\n', '\n\u200b').replace(' ','\u200b \u200b')
-txtout = doc.createTextNode(stdout or "~")
+except Exception as ex: 
+    stderr = str(ex)
 txtrtn = doc.createTextNode((str(type(stdrtn)).split("'")[1])+" ] "+str(stdrtn))
 txterr = doc.createTextNode(stderr or "~")
-sysout.append(txtout)
 sysrtn.append(txtrtn)
 syserr.append(txterr)
-doc.body.append(sysout)
 doc.body.append(syserr)
 doc.body.append(sysrtn)
