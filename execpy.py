@@ -1,7 +1,6 @@
 from browser import document as doc, alert
 stdinp = doc.getElementById("CODE").innerHTML
 stdinp = '\n'.join('   '+line for line in stdinp.splitlines())
-global stdout
 stdrtn, stderr, stdout = "", "", ""
 sysout = doc.createElement("DIV")
 syserr = doc.createElement("DIV")
@@ -11,11 +10,10 @@ sysrtn.style.color = "#00ff00ff"
 syserr.style.color = "#ff0000ff"
 old_print = print
 def print(*args, sep=' ', end='\n'):
-    doc.write('w')
+    global stdout
     for arg in args:
         stdout += f'{arg}{sep}'
     stdout+=str(end)
-    doc.write(stdout)
 tmp = {'__builtins__':__builtins__}
 tmp['print'] = print
 exec('def fn():\n'+stdinp, tmp)
