@@ -11,9 +11,10 @@ for token in tokens:
     if token.startswith('code='):
         code = token[5:]
 stdinp = unquote(code)
+if not stdinp: stdinp = "pass"
 temp_dict = {}
 out = StringIO()
-exec('def fn():\n'+indent(stdinp+"pass", "     "), temp_dict)
+exec('def fn():\n'+indent(stdinp, "     "), temp_dict)
 stdrtn, stdout, stderr = "", "", ""
 sysinp = doc.createElement("DIV")
 sysout = doc.createElement("DIV")
@@ -26,13 +27,13 @@ syserr.style.color = "#ff0000ff"
 try: 
     with rdout(out): 
         stdrtn = temp_dict['fn']()
-    stdout = str(out.getvalue()).replace('\n','<br>&nbsp;');
+    stdout = str(out.getvalue()).replace('\n','<br />\u200b');
 except Exception as exc: 
-    stderr = str(ex)+'<br>'+str(fex()).replace('\n', '<br>&nbsp;').replace(' ','&nbsp; &nbsp;')
+    stderr = str(ex)+'<br />'+str(fex()).replace('\n', '<br />\u200b').replace(' ','\u200b \u200b')
 txtinp = doc.createTextNode(stdinp or "'?.code=' tag not found;")
 txtout = doc.createTextNode(stdout or "*~")
 txtrtn = doc.createTextNode((str(type(stdrtn)).split("'")[1])+" ] "+str(stdrtn))
-txterr = soc.createTextNode(stderr or "*~")
+txterr = doc.createTextNode(stderr or "*~")
 sysinp.append(txtinp)
 sysout.append(txtout)
 sysrtn.append(txtrtn)
