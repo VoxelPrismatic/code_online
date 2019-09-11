@@ -1,5 +1,5 @@
 from io import StringIO
-from html import unencode
+from urllib.parse import unquote
 from traceback import format_exc as fex
 from textwrap import indent
 from browser import document as doc, alert
@@ -10,10 +10,10 @@ tokens = url.split("?.")
 for token in tokens:
     if token.startswith('code='):
         code = token[5:]
-stdinp = unencode(code)
+stdinp = unquote(code)
 temp_dict = {}
 out = StringIO()
-exec('def fn():\n'+indent(stdinp, "     "), temp_dict)
+exec('def fn():\n'+indent(stdinp+"pass", "     "), temp_dict)
 stdrtn, stdout, stderr = "", "", ""
 sysinp = doc.createElement("DIV")
 sysout = doc.createElement("DIV")
@@ -26,12 +26,12 @@ syserr.style.color = "#ff0000ff"
 try: 
     with rdout(out): 
         stdrtn = temp_dict['fn']()
-    stdout = str(out.get_value()).replace('\n','<br >');
+    stdout = str(out.getvalue()).replace('\n','<br>&nbsp;');
 except Exception as exc: 
-    stderr = str(ex)+'<br >'+' \u200b'.join(str(fex()).replace('\n').split())
+    stderr = str(ex)+'<br>'+str(fex()).replace('\n', '<br>&nbsp;').replace(' ','&nbsp; &nbsp;')
 txtinp = doc.createTextNode(stdinp or "'?.code=' tag not found;")
 txtout = doc.createTextNode(stdout or "*~")
-txtrtn = doc.createTextNode((str(type(stdrtn)).split("'")[1])+" ] "+stdrtn)
+txtrtn = doc.createTextNode((str(type(stdrtn)).split("'")[1])+" ] "+str(stdrtn))
 txterr = soc.createTextNode(stderr or "*~")
 sysinp.append(txtinp)
 sysout.append(txtout)
