@@ -1,17 +1,19 @@
-import textwrap, html, traceback, io
+from io import StringIO
+from html import unencode
+from traceback import format_exc as fex
+from textwrap import indent
 from browser import document as doc, alert
 from contextlib import redirect_stdout as rdout
-doc.write('NANI')
 url = str(doc.URL)
 code = ""
 tokens = url.split("?.")
 for token in tokens:
     if token.startswith('code='):
         code = token[5:]
-stdinp = html.unencode(code)
+stdinp = unencode(code)
 temp_dict = {}
-out = io.StringIO()
-exec('def fn():\n'+textwrap.indent(stdinp, "     "), temp_dict)
+out = StringIO()
+exec('def fn():\n'+indent(stdinp, "     "), temp_dict)
 stdrtn, stdout, stderr = "", "", ""
 sysinp = doc.createElement("DIV")
 sysout = doc.createElement("DIV")
@@ -21,13 +23,12 @@ sysinp.style.color = "#ff00ffff"
 sysout.style.color = "#00ffffff"
 sysrtn.style.color = "#00ff00ff"
 syserr.style.color = "#ff0000ff"
-doc.write('~START~')
 try: 
     with rdout(out): 
         stdrtn = temp_dict['fn']()
     stdout = str(out.get_value()).replace('\n','<br >');
 except Exception as exc: 
-    stderr = str(ex)+'<br >'+' \u200b'.join(str(traceback.format_exc()).replace('\n').split())
+    stderr = str(ex)+'<br >'+' \u200b'.join(str(fex()).replace('\n').split())
 txtinp = doc.createTextNode(stdinp or "'?.code=' tag not found;")
 txtout = doc.createTextNode(stdout or "*~")
 txtrtn = doc.createTextNode((str(type(stdrtn)).split("'")[1])+" ] "+stdrtn)
