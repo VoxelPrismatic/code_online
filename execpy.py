@@ -1,6 +1,6 @@
 from browser import document as doc, alert
 stdinp = (doc.getElementById("SYSINP").innerHTML or "return None")
-stdinp = '\n'.join('   '+line for line in stdinp.splitlines())
+stdinp = 'def fn():\n'+'\n'.join('   '+line for line in stdinp.splitlines())
 stdrtn, stderr, stdout = "", "", ""
 old_print = print
 def print(*args, sep=' ', end='\n'):
@@ -10,7 +10,7 @@ def print(*args, sep=' ', end='\n'):
     stdout+=str(end)
 tmp = {'__builtins__':__builtins__}
 tmp['print'] = print
-exec('def fn():\n'+stdinp, tmp)
+exec(stdinp, tmp)
 try: 
     stdrtn = tmp['fn']()
 except Exception as ex: 
