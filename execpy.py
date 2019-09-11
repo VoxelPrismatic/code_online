@@ -1,5 +1,4 @@
 from urllib.parse import unquote
-from textwrap import indent
 from traceback import format_exc as fex
 from browser import document as doc, alert
 url = str(doc.URL)
@@ -8,10 +7,10 @@ tokens = url.split("?.")
 for token in tokens:
     if token.startswith('code='):
         code = token[5:]
+#unquote = {}
 stdinp = unquote(code)
 if not stdinp: stdinp = "pass"
-temp_dict = {}
-exec('def fn():\n'+indent(stdinp, "     "), temp_dict)
+stdinp = '\n'.join('   '+line for line in stdinp.splitlines())
 stdrtn, stderr, stdout = "", "", ""
 sysinp = doc.createElement("DIV")
 sysout = doc.createElement("DIV")
@@ -27,9 +26,10 @@ def print(*args, sep=' ', end='\n'):
     for arg in args:
         stdout += f'{arg}{sep}'
     stdout+=str(end)
-    
+tmp = {}
+exec('def fn():\n'+stdinp, tmp)
 try: 
-    stdrtn = temp_dict['fn']()
+    stdrtn = tmp['fn']()
 except Exception as exc: 
     stderr = str(exc)+'<br />'+str(fex()).replace('\n', '<br />\u200b').replace(' ','\u200b \u200b')
 txtinp = doc.createTextNode(stdinp or "'?.code=' tag not found;")
