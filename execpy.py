@@ -1,5 +1,5 @@
 from browser import document as doc, alert
-stdinp =( doc.getElementById("SYSINP").innerHTML or "return None")
+stdinp = (doc.getElementById("SYSINP").innerHTML or "return None")
 stdinp = '\n'.join('   '+line for line in stdinp.splitlines())
 stdrtn, stderr, stdout = "", "", ""
 old_print = print
@@ -18,7 +18,7 @@ except Exception as ex:
 sysout = (sysout or "~")
 syserr = (syserr or "~")
 sysrtn = (sysrtn or None)
-doc.getElementById("SYSINP").innerHTML = sysinp.replace('\n','<br>').replace(' ','\u200b')
-doc.getElementById("SYSOUT").innerHTML = sysout.replace('\n','<br>').replace(' ','\u200b')
-doc.getElementById("SYSERR").innerHTML = syserr.replace('\n','<br>').replace(' ','\u200b')
-doc.getElementById("SYSRTN").innerHTML = f'{type(sysrtn)} ] {sysrtn}'.replace('\n','<br>').replace(' ','\u200b')
+doc.getElementById("SYSINP").innerHTML = stdinp.replace('\n','<br>').replace(' ','\u200b')
+doc.getElementById("SYSOUT").innerHTML = stdout.replace('\n','<br>').replace(' ','\u200b')
+doc.getElementById("SYSERR").innerHTML = stderr.replace('\n','<br>').replace(' ','\u200b')
+doc.getElementById("SYSRTN").innerHTML = f'{type(stdrtn)} ] {stdrtn}'.replace('\n','<br>').replace(' ','\u200b')
