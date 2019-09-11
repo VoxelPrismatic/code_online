@@ -42,3 +42,8 @@ sysinp.appendChild(txtinp);
 sysout.appendChild(txtout);
 syserr.appendChild(txterr);
 sysrtn.appendChild(txtrtn);
+document.body.appendChild(syslng);
+document.body.appendChild(sysinp);
+document.body.appendChild(sysout);
+document.body.appendChild(syserr);
+document.body.appendChild(sysrtn);
