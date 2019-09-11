@@ -10,8 +10,8 @@ def print(*args, sep=' ', end='\n'):
     stdout+=str(end)
 tmp = {'__builtins__':__builtins__}
 tmp['print'] = print
-exec(stdinp, tmp)
 try: 
+    exec(stdinp, tmp)
     stdrtn = tmp['fn']()
 except Exception as ex: 
     stderr = str(ex)
