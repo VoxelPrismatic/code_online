@@ -18,5 +18,5 @@ stdrtn = (stdrtn || null);
 document.getElementById("SYSINP").innerHTML = stdinp.replace('\n','<br>').replace(' ','\u200b');
 document.getElementById("SYSOUT").innerHTML = stdout.replace('\n','<br>').replace(' ','\u200b');
 document.getElementById("SYSERR").innerHTML = stderr.replace('\n','<br>').replace(' ','\u200b');
-docyment.getElementById("SYSRTN").innerHTML = ((typeof stdrtn)+" ] "+stdrtn).replace('\n','<br>').replace(' ','\u200b');
+document.getElementById("SYSRTN").innerHTML = ((typeof stdrtn)+" ] "+stdrtn).replace('\n','<br>').replace(' ','\u200b');
 
