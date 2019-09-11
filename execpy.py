@@ -1,4 +1,4 @@
-from urllib.parse import unquote
+#from urllib.parse import unquote
 from traceback import format_exc as fex
 from browser import document as doc, alert
 url = str(doc.URL)
@@ -7,8 +7,17 @@ tokens = url.split("?.")
 for token in tokens:
     if token.startswith('code='):
         code = token[5:]
-#unquote = {}
-stdinp = unquote(code)
+skipA = False
+skipB = False
+stdinp = ""
+for x in range(len(code)):
+    if skipA: continue
+    elif skibB: continue
+    elif '%' in code[x:x+3]:
+        skipA, skipB = True, True
+        stdinp += eval(f'"\\u00{code[x+1:x+2]}"')
+    else:
+        stdinp += code[x]
 if not stdinp: stdinp = "pass"
 stdinp = '\n'.join('   '+line for line in stdinp.splitlines())
 stdrtn, stderr, stdout = "", "", ""
