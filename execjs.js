@@ -7,7 +7,7 @@ syserr.style.color = "#ff0000ff";
 var stderr = "";
 var stdout = "";
 var stdrtn;
-var stdinp = document.getElementById("CODE").inmerHTML;
+var stdinp = document.getElementById("CODE").innerHTML;
 (function(){
     oldLog = console.log;
     console.log = function(...args){ 
