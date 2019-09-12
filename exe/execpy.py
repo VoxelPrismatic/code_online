@@ -5,9 +5,7 @@ stdrtn, stderr, stdout = "", "", ""
 old_print = print
 def print(*args, sep=' ', end='\n'):
     global stdout
-    for arg in args:
-        stdout += f'{arg}{sep}'
-    stdout+=str(end)
+    stdout += sep.join(args) + end
 tmp = {'__builtins__':__builtins__}
 tmp['print'] = print
 try: 
