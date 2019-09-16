@@ -16,4 +16,4 @@ var jskw = ["js", "javascript"];
 var rbkw = ["rb", "ruby"];
 var swiftkw = ["swift", "sft", "sw"];
 var truthkw = ['tr', 'truth'];
-document.getElementById('SYSINP').innerHTML = eval("'"+sysinp+"'");
+document.getElementById('SYSINP').innerHTML = sysinp;
