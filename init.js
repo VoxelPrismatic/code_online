@@ -1,12 +1,9 @@
 var url = decodeURIComponent(document.URL+"")+"";
 var tokens = url.split("?.");
 var lang = "";
-var stdinp = "";
 for (token of tokens) {
   if (token.search("lang=")==0) {
-    lang += token.slice(5)+"".toLowerCase();
-  } else if (token.search("code=")==0) {
-    stdinp += token.slice(5)+"";
+    lang = token.slice(5)+"".toLowerCase();
   }
 }
 var javakw = ["java"];
