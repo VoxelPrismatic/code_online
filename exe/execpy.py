@@ -1,6 +1,6 @@
 from browser import document as doc, alert
 stdinp = (doc.getElementById("SYSINP").innerHTML or "return None")
-stdinp = 'def fn():\n'+stdinp.replace('\n','\n\t')
+stdinp = 'def fn():\n    '+stdinp.replace('\n','\n\t')
 stdrtn, stderr, stdout = "", "", ""
 old_print = print
 def print(*args, sep=' ', end='\n'):
