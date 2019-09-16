@@ -1,4 +1,4 @@
-try{var stderr = "~";
+var stderr = "~";
 var stdout = "~";
 var stdrtn = null;
 var stdinp = document.getElementById("SYSINP").innerHTML;
@@ -15,5 +15,5 @@ try {
 document.getElementById("SYSINP").innerHTML = "(function(){\n"+stdinp+"\n;})();";
 document.getElementById("SYSOUT").innerHTML = stdout;
 document.getElementById("SYSERR").innerHTML = stderr;
-document.getElementById("SYSRTN").innerHTML = ((typeof stdrtn)+" ] "+stdrtn;}catch(ex){document.write(ex);}
+document.getElementById("SYSRTN").innerHTML = ((typeof stdrtn)+" ] "+stdrtn;
 
