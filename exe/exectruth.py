@@ -13,6 +13,8 @@ for x in range(len(stdinp)-1):
         args.append('or')
     elif stdinp[x] == '~':
         args.extend(['or','not'])
+    elif stdinp[x] == '*':
+        args.append('==')
     elif stdinp[x] == '?':
         args.append('!=')
     else:
@@ -25,7 +27,8 @@ eq = ' '.join(args)
 rep = {' or ': '] OR [',
        'and': 'AND',
        '!=': 'XOR',
-       'not':'NOT'}
+       'not':'NOT',
+       '==': 'XNOR'}
 eq2 = eq
 for re in rep:
     eq2 = eq.replace(re,rep[re])
@@ -48,4 +51,4 @@ while any(g == '0' for g in gate):
 eq1 = eq
 stdout += '\n'+calc(gate)
 doc.getElementById("SYSOUT").innerHTML = stdout
-doc.getElementById("SYSERR").innerHTML = "SYNTAX: A!BC+D?E~F - [A AND NOT B AND C] OR [D XOR E] OR [NOT F]"
+doc.getElementById("SYSERR").innerHTML = "SYNTAX: A!BC+D?E~F*G - [A AND NOT B AND C] OR [D XOR E] OR [NOT F XNOR G] "
