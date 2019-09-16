@@ -31,10 +31,10 @@ def calc(gate):
     return st
 stdout = ' '.join(lttr) + ' OUT'
 while any(g == '0' for g in gate):
-    stdout += '\n'+calc(gate)
+    stdout += '<br>'+calc(gate)
     gate = next(gate)
 eq1 = eq
-stdout += '\n'+calc(gate)
+stdout += '<br>'+calc(gate)
 
 doc.getElementById("SYSINP").innerHTML = stdinp
 doc.getElementById("SYSOUT").innerHTML = eq
