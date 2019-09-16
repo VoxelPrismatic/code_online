@@ -1,3 +1,14 @@
+/* INIT */
+var url = decodeURIComponent(document.URL+"")+"";
+var lang = url.split("?.")[2];
+var javakw = ["java"];
+var cppkw = ["cpp", "c++"];
+var pykw = ["py", "python"];
+var jskw = ["js", "javascript"];
+var rbkw = ["rb", "ruby"];
+var swiftkw = ["swift", "sft", "sw"];
+var truthkw = ['tr', 'truth'];
+
 /* LOADER */
 var executor = document.createElement("SCRIPT");
 function write(a, b, c, d) {
@@ -32,3 +43,5 @@ else {
   write("LANG ] *.*", "Supported languages: 'js', 'javascript', 'py', 'python', 'tr', 'truth",
         "'?.lang=' tag not provided in URL", "NoneType ] None");
 }
+
+document.write('hi');
