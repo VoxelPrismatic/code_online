@@ -15,6 +15,7 @@ var pykw = ["py", "python"];
 var jskw = ["js", "javascript"];
 var rbkw = ["rb", "ruby"];
 var swiftkw = ["swift", "sft", "sw"];
+var truthkw = ['tr', 'truth'];
 
 /*GEN SITE*/
 var syslng = document.createElement('DIV');
