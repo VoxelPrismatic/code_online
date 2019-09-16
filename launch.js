@@ -21,10 +21,16 @@ else if (pykw.indexOf(lang) > -1) {
   document.getElementById("SYSLNG").innerHTML = "LANG ] *.PY";
   document.body.appendChild(executor);
 }
+else if (truthkw.indexOf(lang) > -1) {
+  executor.type = "text/python";
+  executor.src = "exe/exectruth.py";
+  document.getElementById("SYSLNG").innerHTML = "LANG ] *.BIN";
+  document.body.appendChild(executor);
+}
 //??
 else {
   document.getElementById("SYSLNG").innerHTML = "LANG ] *.*";
-  document.getElementById("SYSOUT").innerHTML = "Supported languages: 'js', 'javascript', 'py', 'python'";
+  document.getElementById("SYSOUT").innerHTML = "Supported languages: 'js', 'javascript', 'py', 'python', 'truth";
   document.getElementById("SYSERR").innerHTML = "'?.lang=' tag not provided in URL";
   document.getElementById("SYSRTN").innerHTML = "? ] ?";
 }
