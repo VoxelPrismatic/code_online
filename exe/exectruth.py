@@ -27,7 +27,7 @@ def calc(gate):
     eq1 = eq
     for y in range(len(lttr)):
         eq1 = eq1.replace(lttr[y],gate[y])
-        st += gate[y] + ""
+        st += gate[y] + " "
     st += f"-{eval(eq1)}-"
     return st
 stdout = ' '.join(lttr) + ' OUT'
