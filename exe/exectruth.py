@@ -6,7 +6,7 @@ lttr = []
 for x in range(len(stdinp)-1):
     if stdinp[x] == ' ':
         continue
-    if stdinp[x] == '!':
+    if stdinp[x] == '?':
         args.append('and')
         args.append('not')
     elif stdinp[x] == '+':
@@ -28,7 +28,7 @@ def calc(gate):
     for y in range(len(lttr)):
         eq1 = eq1.replace(lttr[y],gate[y])
         st += gate[y] + " "
-    st += f"-{eval(eq1)}-"
+    st += f"-{int(eval(eq1))}-"
     return st
 stdout = ' '.join(lttr) + ' OUT'
 while any(g == '0' for g in gate):
