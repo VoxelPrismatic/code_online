@@ -1,7 +1,7 @@
 /* INIT */
 var url = decodeURIComponent(document.URL+"")+"";
-var tokens = url.split("?.lang=");
-var lang = tokens[1];
+var stdinp = document.getElementById("SYSINP").innerHTML
+var lang = url.split("?.lang=")[1];
 var javakw = ["java"];
 var cppkw = ["cpp", "c++"];
 var pykw = ["py", "python"];
@@ -44,5 +44,3 @@ else {
   write("LANG ] *.*", "Supported languages: 'js', 'javascript', 'py', 'python', 'tr', 'truth",
         "'?.lang=' tag not provided in URL", "code_online/?.code=<s>...</s>?.lang=<s>...</s>");
 }
-
-document.write('hi');
