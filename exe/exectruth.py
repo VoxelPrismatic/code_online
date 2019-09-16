@@ -22,13 +22,14 @@ for x in range(len(stdinp)-1):
         gate.append('0')
         lttr.append(stdinp[x])
 eq = ' '.join(args)
-rep = {'or': '] OR [',
+rep = {' or ': '] OR [',
        'and': 'AND',
        '!=': 'XOR',
        'not':'NOT'}
-doc.getElementById("SYSRTN").innerHTML = eq
+eq2 = eq
 for re in rep:
-    doc.getElementById("SYSRTN").innerHTML = doc.getElementById("SYSRTN").innerHTML.replace(re,rep[re])
+    eq2 = eq.replace(re,rep[re])
+doc.getElementById("SYSRTN").innerHTML = f'[{eq2}]'
 def next(gate):
     return list(f'{int("".join(gate),2)+1:b}'.zfill(len(gate)))
 def calc(gate):
@@ -40,6 +41,7 @@ def calc(gate):
     st += f"-{int(eval(eq1))}-"
     return st
 stdout = ' '.join(lttr) + ' OUT'
+stdout += '\n'+'-'*len(stdout)
 while any(g == '0' for g in gate):
     stdout += '<br>'+calc(gate)
     gate = next(gate)
