@@ -1,5 +1,5 @@
-var stderr = "~";
-var stdout = "~";
+var stderr = "";
+var stdout = "";
 var stdrtn = null;
 var stdinp = document.getElementById("SYSINP").innerHTML;
 (function(){
@@ -14,7 +14,7 @@ try {
 }
 stdinp = stdinp.replace('\n','\n\t')
 document.getElementById("SYSINP").innerHTML = "(function(){<br>"+stdinp+"<br>;})();";
-document.getElementById("SYSOUT").innerHTML = stdout;
-document.getElementById("SYSERR").innerHTML = stderr;
+document.getElementById("SYSOUT").innerHTML = (stdout || "~");
+document.getElementById("SYSERR").innerHTML = (stderr || "~");
 document.getElementById("SYSRTN").innerHTML = (typeof stdrtn)+" ] "+stdrtn;
 
