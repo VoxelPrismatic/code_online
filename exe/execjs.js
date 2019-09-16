@@ -8,7 +8,7 @@ var stdinp = document.getElementById("SYSINP").innerHTML;
         for (arg of args) { stdout += arg+""; }
         stdout += "\n";};})();
 try { 
-    stdrtn = eval("(function(){"+stdinp+"})();");
+    stdrtn = eval("(function(){\n"+stdinp+"\n})();");
 } catch(ex) { 
     stderr = ex.message; 
 }
