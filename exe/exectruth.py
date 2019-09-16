@@ -7,10 +7,11 @@ for x in range(len(stdinp)-1):
     if stdinp[x] == ' ':
         continue
     if stdinp[x] == '!':
+        args.append('and')
         args.append('not')
     elif stdinp[x] == '+':
         args.append('or')
-    elif stdinp[x] == '?':
+    elif stdinp[x] == ':':
         args.append('!=')
     else:
         args.append(stdinp[x])
@@ -20,7 +21,7 @@ for x in range(len(stdinp)-1):
         lttr.append(stdinp[x])
 eq = ' '.join(args)
 def next(gate):
-    return list(f'{int(\'\'.join(gate),2)+1:b}'.zfill(len(gate)))
+    return list(f'{int("".join(gate),2)+1:b}'.zfill(len(gate)))
 def calc(gate):
     st = ""
     eq1 = eq
@@ -38,5 +39,5 @@ stdout += '<br>'+calc(gate)
 
 doc.getElementById("SYSINP").innerHTML = stdinp
 doc.getElementById("SYSOUT").innerHTML = eq
-doc.getElementById("SYSERR").innerHTML = "SYNTAX: A!BC+D?E - (A AND NOT B AND C) OR (D XOR E)"
+doc.getElementById("SYSERR").innerHTML = "SYNTAX: A!BC+D:E - (A AND NOT B AND C) OR (D XOR E)"
 doc.getElementById("SYSRTN").innerHTML = stdout
