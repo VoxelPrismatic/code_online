@@ -18,7 +18,9 @@ for x in range(len(stdinp)-1):
         gate.append('0')
 eq = ' '.join(args)
 def next(gate):
-    return list(f'{int("".join(gate),2)+1:b}')
+    i = "".join(gate)
+    return list(f"{int(i,2):b}".zfill(len(gate)))
+
 doc.getElementById("SYSINP").innerHTML = stdinp
 doc.getElementById("SYSOUT").innerHTML = eq
 doc.getElementById("SYSERR").innerHTML = "SYNTAX: A!BC+D?E - (A AND NOT B AND C) OR (D XOR E)"
