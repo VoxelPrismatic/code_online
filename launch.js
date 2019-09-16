@@ -1,36 +1,34 @@
 /* LOADER */
 var executor = document.createElement("SCRIPT");
+function write(a, b, c, d) {
+  document.getElementById("SYSLNG").innerHTML = a;
+  document.getElementById("SYSOUT").innerHTML = b;
+  document.getElementById("SYSERR").innerHTML = c;
+  document.getElementById("SYSRTN").innerHTML = d;
+}
+function create(typ, src, lng) {
+  executor.type = typ;
+  executor.src = src;
+  document.getElementById("SYSLNG").innerHTML = lng;
+  document.body.appendChild(executor)
+}
 // NO CODE
 if (stdinp == "") {
-  document.getElementById("SYSLNG").innerHTML = "LANG ] *.*";
-  document.getElementById("SYSOUT").innerHTML = "~";
-  document.getElementById("SYSERR").innerHTML = "'?.code=' tag not provided in URL";
-  document.getElementById("SYSRTN").innerHTML = "? ] ?";
+  write("LANG ] *.*", "~", "'?.code=' tag not provided in URL", "NoneType ] None");
 } 
 //JS
 else if (jskw.indexOf(lang) > -1) {
-  executor.type = "text/javascript";
-  executor.src = "exe/execjs.js";
-  document.getElementById("SYSLNG").innerHTML = "LANG ] *.JS";
-  document.body.appendChild(executor);
+  create("text/javascript","exe/execjs.js","LANG ] *.JS");
 }
 //PY
 else if (pykw.indexOf(lang) > -1) {
-  executor.type = "text/python";
-  executor.src = "exe/execpy.py";
-  document.getElementById("SYSLNG").innerHTML = "LANG ] *.PY";
-  document.body.appendChild(executor);
+  create("text/python","exe/execpy.py","LANG ] *.PY");
 }
 else if (truthkw.indexOf(lang) > -1) {
-  executor.type = "text/python";
-  executor.src = "exe/exectruth.py";
-  document.getElementById("SYSLNG").innerHTML = "LANG ] *.BIN";
-  document.body.appendChild(executor);
+  create("text/python","exe/exectruth.py","LANG ] *.BIN");
 }
 //??
 else {
-  document.getElementById("SYSLNG").innerHTML = "LANG ] *.*";
-  document.getElementById("SYSOUT").innerHTML = "Supported languages: 'js', 'javascript', 'py', 'python', 'truth";
-  document.getElementById("SYSERR").innerHTML = "'?.lang=' tag not provided in URL";
-  document.getElementById("SYSRTN").innerHTML = "? ] ?";
+  write("LANG ] *.*", "Supported languages: 'js', 'javascript', 'py', 'python', 'tr', 'truth",
+        "'?.lang=' tag not provided in URL", "NoneType ] None");
 }
