@@ -2,20 +2,22 @@ from browser import document as doc, alert
 stdinp = (doc.getElementById("SYSINP").innerHTML or "A")
 args = []
 gate = []
-for x in stdinp:
-    if x == ' ':
+for x in range(len(stdinp)-1):
+    if stdinp[x] == ' ':
         continue
-    if x == '!':
+    if stdinp[x] == '!':
         args.append('not')
-    elif x == '+':
+    elif stdinp[x] == '+':
         args.append('or')
-    elif x == '?':
+    elif stdinp[x] == '?':
         args.append('!=')
     else:
-        args.append(x)
+        args.append(stdinp[x])
+        if stdinp[x+1].lower() in 'abcdefghijklmnopqrstuvwxyz':
+            args.append('and')
         gate.append(False)
 eq = ' '.join(args)
 doc.getElementById("SYSINP").innerHTML = stdinp
 doc.getElementById("SYSOUT").innerHTML = eq
 doc.getElementById("SYSERR").innerHTML = "SYNTAX: A!BC+D?E - (A AND NOT B AND C) OR (D XOR E)"
-doc.getElementById("SYSRTN").innerHTML = f''
+doc.getElementById("SYSRTN").innerHTML = "nani"
