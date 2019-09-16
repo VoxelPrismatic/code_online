@@ -18,18 +18,13 @@ var swiftkw = ["swift", "sft", "sw"];
 var truthkw = ['tr', 'truth'];
 
 /*GEN SITE*/
-var x1 = ['\\n','\\t','\\r',"\\'",'\\"','\\b','\\\\'];
-var x2 = ['\n', '\t', '\r', "\'", '\"', '\b', '\\'];
-for (i = 0; i < x1.length; i++) {
-  stdinp = stdinp.replace(x1[i], x2[i]);
-}
 var syslng = document.createElement('DIV');
 var sysinp = document.createElement('DIV');
 var sysout = document.createElement('DIV');
 var syserr = document.createElement('DIV');
 var sysrtn = document.createElement('DIV');
 var txtlng = document.createTextNode('~');
-var txtinp = document.createTextNode(stdinp);
+var txtinp = document.createTextNode(`${stdinp}`);
 var txtout = document.createTextNode('~');
 var txterr = document.createTextNode('~');
 var txtrtn = document.createTextNode('~');
