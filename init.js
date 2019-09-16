@@ -1,11 +1,5 @@
 var url = decodeURIComponent(document.URL+"")+"";
-var tokens = url.split("?.");
-var lang = "";
-for (token of tokens) {
-  if (token.search("lang=")==0) {
-    lang = token.slice(5)+"".toLowerCase();
-  }
-}
+var lang = url.split("?.")[2];
 var javakw = ["java"];
 var cppkw = ["cpp", "c++"];
 var pykw = ["py", "python"];
