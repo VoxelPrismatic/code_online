@@ -15,7 +15,7 @@ for x in range(len(stdinp)-1):
         args.append(stdinp[x])
         if stdinp[x+1].lower() in 'abcdefghijklmnopqrstuvwxyz':
             args.append('and')
-        gate.append(False)
+        gate.append(0)
 eq = ' '.join(args)
 doc.getElementById("SYSINP").innerHTML = stdinp
 doc.getElementById("SYSOUT").innerHTML = eq
