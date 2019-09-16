@@ -16,7 +16,7 @@ function write(a, b, c, d) {
   document.getElementById("SYSLNG").innerHTML = a;
   document.getElementById("SYSOUT").innerHTML = b;
   document.getElementById("SYSERR").innerHTML = c;
-  document.getElementById("SYSRTN").innerHTML = d;q
+  document.getElementById("SYSRTN").innerHTML = d;
 }
 function create(typ, src, lng) {
   executor.type = typ;
