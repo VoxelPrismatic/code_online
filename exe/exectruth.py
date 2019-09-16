@@ -41,11 +41,11 @@ def calc(gate):
     st += f"-{int(eval(eq1))}-"
     return st
 stdout = ' '.join(lttr) + ' OUT'
-stdout += '<br>'+'-'*len(stdout)
+stdout += '\n'+'-'*len(stdout)
 while any(g == '0' for g in gate):
-    stdout += '<br>'+calc(gate)
+    stdout += '\n'+calc(gate)
     gate = next(gate)
 eq1 = eq
-stdout += '<br>'+calc(gate)
+stdout += '\n'+calc(gate)
 doc.getElementById("SYSOUT").innerHTML = stdout
 doc.getElementById("SYSERR").innerHTML = "SYNTAX: A!BC+D?E~F - [A AND NOT B AND C] OR [D XOR E] OR [NOT F]"
