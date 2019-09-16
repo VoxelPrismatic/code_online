@@ -18,6 +18,11 @@ var swiftkw = ["swift", "sft", "sw"];
 var truthkw = ['tr', 'truth'];
 
 /*GEN SITE*/
+var x1 = ['\\n','\\t','\\r',"\\'",'\\"','\\b','\\\\']
+var x2 = ['\n', '\t', '\r', "\'", '\"', '\b', '\\']
+for (var i = 0; i < x1.length; i++;) {
+  stdinp = stdinp.replace(x1[i], x2[i]);
+}
 var syslng = document.createElement('DIV');
 var sysinp = document.createElement('DIV');
 var sysout = document.createElement('DIV');
