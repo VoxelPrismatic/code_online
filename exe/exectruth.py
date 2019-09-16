@@ -26,9 +26,9 @@ for x in range(len(stdinp)-1):
 eq = ' '.join(args)
 rep = {' or ': '] OR [',
        'and': 'AND',
-       '!=': 'XOR',
-       'not':'NOT',
-       '==': 'XNOR'}
+       ' != ': '-XOR-',
+       'not ':'NOT-',
+       ' == ': '-XNOR-'}
 eq2 = eq
 for re in rep:
     eq2 = eq.replace(re,rep[re])
