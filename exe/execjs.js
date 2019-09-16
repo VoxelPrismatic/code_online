@@ -13,7 +13,7 @@ try {
     stderr = ex.message; 
 }
 stdinp = stdinp.replace("\n","\n    ");
-document.getElementById("SYSINP").innerHTML = "(function(){\n"+stdinp+"\n;})();";
+//document.getElementById("SYSINP").innerHTML = "(function(){\n"+stdinp+"\n;})();";
 document.getElementById("SYSOUT").innerHTML = (stdout || "~");
 document.getElementById("SYSERR").innerHTML = (stderr || "~");
 document.getElementById("SYSRTN").innerHTML = ((typeof stdrtn)+" ] "+stdrtn;
