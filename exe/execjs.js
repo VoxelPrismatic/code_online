@@ -12,6 +12,7 @@ try {
 } catch(ex) { 
     stderr = ex.message; 
 }
+stdinp = stdinp.replace('\n','\n\t')
 document.getElementById("SYSINP").innerHTML = "(function(){\n"+stdinp+"\n;})();";
 document.getElementById("SYSOUT").innerHTML = stdout;
 document.getElementById("SYSERR").innerHTML = stderr;
