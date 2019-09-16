@@ -1,5 +1,5 @@
 from browser import document as doc, alert
-stdinp = (doc.getElementById("SYSINP").innerHTML or "A")
+stdinp = (doc.getElementById("SYSINP").innerHTML or "A")+" "
 args = []
 gate = []
 for x in range(len(stdinp)-1):
