@@ -41,7 +41,7 @@ def calc(gate):
     st += f"-{int(eval(eq1))}-"
     return st
 stdout = ' '.join(lttr) + ' OUT'
-stdout += '\n'+'-'*len(stdout)
+stdout += '<br>'+'-'*len(stdout)
 while any(g == '0' for g in gate):
     stdout += '<br>'+calc(gate)
     gate = next(gate)
