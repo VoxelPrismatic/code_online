@@ -1,6 +1,7 @@
 /* INIT */
 var url = decodeURIComponent(document.URL+"")+"";
-var lang = url.split("?.")[2];
+var tokens = url.split("?.lang=");
+var lang = tokens[1];
 var javakw = ["java"];
 var cppkw = ["cpp", "c++"];
 var pykw = ["py", "python"];
@@ -15,7 +16,7 @@ function write(a, b, c, d) {
   document.getElementById("SYSLNG").innerHTML = a;
   document.getElementById("SYSOUT").innerHTML = b;
   document.getElementById("SYSERR").innerHTML = c;
-  document.getElementById("SYSRTN").innerHTML = d;
+  document.getElementById("SYSRTN").innerHTML = d;q
 }
 function create(typ, src, lng) {
   executor.type = typ;
@@ -25,7 +26,7 @@ function create(typ, src, lng) {
 }
 // NO CODE
 if (stdinp == "") {
-  write("LANG ] *.*", "~", "'?.code=' tag not provided in URL", "NoneType ] None");
+  write("LANG ] *.*", "~", "'?.code=' tag not provided in URL", "code_online/?.code=<s>...</s>?.lang=<s>...</s>");
 } 
 //JS
 else if (jskw.indexOf(lang) > -1) {
@@ -41,7 +42,7 @@ else if (truthkw.indexOf(lang) > -1) {
 //??
 else {
   write("LANG ] *.*", "Supported languages: 'js', 'javascript', 'py', 'python', 'tr', 'truth",
-        "'?.lang=' tag not provided in URL", "NoneType ] None");
+        "'?.lang=' tag not provided in URL", "code_online/?.code=<s>...</s>?.lang=<s>...</s>");
 }
 
 document.write('hi');
