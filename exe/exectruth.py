@@ -8,10 +8,11 @@ for x in range(len(stdinp)-1):
     if stdinp[x] == ' ':
         continue
     if stdinp[x] == '!':
-        args.append('and')
-        args.append('not')
+        args.extend(['and','not'])
     elif stdinp[x] == '+':
         args.append('or')
+    elif stdinp[x] == '~':
+        args.extend(['or','not'])
     elif stdinp[x] == '?':
         args.append('!=')
     else:
@@ -21,7 +22,13 @@ for x in range(len(stdinp)-1):
         gate.append('0')
         lttr.append(stdinp[x])
 eq = ' '.join(args)
+rep = {'or': '] OR [',
+       'and': 'AND',
+       '!=': 'XOR',
+       'not':'NOT'}
 doc.getElementById("SYSRTN").innerHTML = eq
+for re in rep:
+    doc.getElementById("SYSRTN").innerHTML = doc.getElementById("SYSRTN").innerHTML.replace(re,rep[re])
 def next(gate):
     return list(f'{int("".join(gate),2)+1:b}'.zfill(len(gate)))
 def calc(gate):
@@ -39,4 +46,4 @@ while any(g == '0' for g in gate):
 eq1 = eq
 stdout += '<br>'+calc(gate)
 doc.getElementById("SYSOUT").innerHTML = stdout
-doc.getElementById("SYSERR").innerHTML = "SYNTAX: A!BC+D?E - (A AND NOT B AND C) OR (D XOR E)"
+doc.getElementById("SYSERR").innerHTML = "SYNTAX: A!BC+D?E~F - [A AND NOT B AND C] OR [D XOR E] OR [NOT F]"
