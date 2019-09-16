@@ -12,10 +12,8 @@ try {
 } catch(ex) { 
     stderr = ex.message; 
 }
-stderr = (stderr || "~");
-stdout = (stdout || "~");
-document.getElementById("SYSINP").innerHTML = (stdinp.replace('\n','<br>')).replace(' ','\u200b ');
-document.getElementById("SYSOUT").innerHTML = (stdout.replace('\n','<br>')).replace(' ','\u200b ');
-document.getElementById("SYSERR").innerHTML = (stderr.replace('\n','<br>')).replace(' ','\u200b ');
-document.getElementById("SYSRTN").innerHTML = (((typeof stdrtn)+" ] "+stdrtn).replace('\n','<br>')).replace(' ','\u200b ');
+document.getElementById("SYSINP").innerHTML = "(function(){\n"+stdinp.replace("\n","\n    ")+"\n;})();";
+document.getElementById("SYSOUT").innerHTML = (stdout || "~");
+document.getElementById("SYSERR").innerHTML = (stderr || "~");
+document.getElementById("SYSRTN").innerHTML = ((typeof stdrtn)+" ] "+stdrtn;
 
