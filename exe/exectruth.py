@@ -7,12 +7,12 @@ lttr = []
 for x in range(len(stdinp)-1):
     if stdinp[x] == ' ':
         continue
-    if stdinp[x] == '?':
+    if stdinp[x] == '!':
         args.append('and')
         args.append('not')
     elif stdinp[x] == '+':
         args.append('or')
-    elif stdinp[x] == ':':
+    elif stdinp[x] == '?':
         args.append('!=')
     else:
         args.append(stdinp[x])
@@ -39,4 +39,4 @@ while any(g == '0' for g in gate):
 eq1 = eq
 stdout += '<br>'+calc(gate)
 doc.getElementById("SYSOUT").innerHTML = stdout
-doc.getElementById("SYSERR").innerHTML = "SYNTAX: A!BC+D:E - (A AND NOT B AND C) OR (D XOR E)"
+doc.getElementById("SYSERR").innerHTML = "SYNTAX: A!BC+D?E - (A AND NOT B AND C) OR (D XOR E)"
