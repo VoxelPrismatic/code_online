@@ -16,7 +16,7 @@ except Exception as ex:
 stdout = (stdout or "~")
 stderr = (stderr or "~")
 stdrtn = (stdrtn or None)
-doc.getElementById("SYSINP").innerHTML = stdinp.replace('\n','<br>').replace(' ','\u200b ')
-doc.getElementById("SYSOUT").innerHTML = stdout.replace('\n','<br>').replace(' ','\u200b ')
-doc.getElementById("SYSERR").innerHTML = stderr.replace('\n','<br>').replace(' ','\u200b ')
-doc.getElementById("SYSRTN").innerHTML = f'{str(type(stdrtn))[8:-2]} ] {stdrtn}'.replace('\n','<br>').replace(' ','\u200b ')
+doc.getElementById("SYSINP").innerHTML = stdinp
+doc.getElementById("SYSOUT").innerHTML = stdout
+doc.getElementById("SYSERR").innerHTML = stderr
+doc.getElementById("SYSRTN").innerHTML = f'{str(type(stdrtn))[8:-2]} ] {stdrtn}'
