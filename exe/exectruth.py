@@ -29,8 +29,9 @@ for x in range(len(stdinp)-1):
         args.append(stdinp[x])
         if stdinp[x+1].lower() in 'abcdefghijklmnopqrstuvwxyz':
             args.append('and')
-        gate.append('0')
-        lttr.append(stdinp[x])
+        if stdinp not in lttr:
+            gate.append('0')
+            lttr.append(stdinp[x])
 eq = ' '.join(args)
 rep = {' or ': '] OR [',
        'and': 'AND',
