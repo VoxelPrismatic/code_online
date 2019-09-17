@@ -38,12 +38,10 @@ for x in range(len(stdinp)-1):
         if stdinp[x].upper() not in lttr:
             gate.append('0')
             lttr.append(stdinp[x].upper())
-eq = ' '.join(args)
+eq = ' '.join(args).replace('?n ?n','not').replace('?n','not') #Prevents 'not not' when smth like A~B~C
 rep = {' or ': '] OR [',
        'and': 'AND',
        ' != ': '-XOR-',
-       '?n ?n ': 'not ', # Prevents duplicates when using ~,$
-       '?n ': 'not ',
        'not ':'NOT-',
        ' == ': '-XNOR-',
        '(': '[',
