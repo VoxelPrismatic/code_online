@@ -8,18 +8,24 @@ for x in range(len(stdinp)-1):
     if stdinp[x] == ' ':
         continue
     if stdinp[x] == '!':
-        if len(args) != 0:
+        if len(args) and args[-1] in 'abcdefghijklmnopqrstuvwxyz':
             args.append('and')
         args.append('not')
+    elif stdinp[x] == '&':
+        args.append('and')
     elif stdinp[x] == '+':
         args.append('or')
     elif stdinp[x] == '~':
-        args.extend(['or','not'])
+        args.append('or')
+        args.append('not')
     elif stdinp[x] == '*':
         args.append('==')
     elif stdinp[x] == '?':
         args.append('!=')
-    else:
+    elif stdinp[x] == '$':
+        args.append('and')
+        args.append('not')
+    elif args[-1] != 'and':
         args.append(stdinp[x])
         if stdinp[x+1].lower() in 'abcdefghijklmnopqrstuvwxyz':
             args.append('and')
