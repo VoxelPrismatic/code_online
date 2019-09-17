@@ -24,11 +24,11 @@ for x in range(len(stdinp)-1):
             args.append('and')
         args.append('not')
     elif stdinp[x] == '~':
-        if args[-2] != 'not' or len(args) == 1:
+        if len(args) or args[-2] != 'not':
             args.insert(-1, 'not')
         args.append('or not')
     elif stdinp[x] == '$':
-        if args[-2] != 'not' or len(args) == 1:
+        if len(args) and args[-2] != 'not':
             args.insert(-1, 'not')
         args.append('and not')
     elif stdinp[x] in list(rep):
