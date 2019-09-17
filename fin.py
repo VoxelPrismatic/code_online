@@ -9,4 +9,4 @@ for x in ['SYSLNG','SYSINP','SYSOUT','SYSERR','SYSRTN']:
 document.body.style.backgroundColor = "#112222ff"
 document.body.style.color = "#ffffffff"
 document.body.style.fontFamily = "Ubuntu Mono"
-document.getElementById('SYSDON').innerHTML = "[COMPLETE]"
+document.getElementById('SYSLOD').innerHTML = "[COMPLETE]"
