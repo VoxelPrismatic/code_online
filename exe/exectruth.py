@@ -8,7 +8,9 @@ for x in range(len(stdinp)-1):
     if stdinp[x] == ' ':
         continue
     if stdinp[x] == '!':
-        args.extend(['and','not'])
+        if len(args) != 0:
+            args.append('and')
+        args.append('not')
     elif stdinp[x] == '+':
         args.append('or')
     elif stdinp[x] == '~':
