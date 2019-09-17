@@ -42,8 +42,8 @@ eq = ' '.join(args)
 rep = {' or ': '] OR [',
        'and': 'AND',
        ' != ': '-XOR-',
-       'n? n? ': 'not ', # Prevents duplicates when using ~,$
-       'n? ': 'not ',
+       '?n ?n ': 'not ', # Prevents duplicates when using ~,$
+       '?n ': 'not ',
        'not ':'NOT-',
        ' == ': '-XNOR-',
        '(': '[',
