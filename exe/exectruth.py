@@ -24,10 +24,12 @@ for x in range(len(stdinp)-1):
             args.append('and')
         args.append('not')
     elif stdinp[x] == '~':
-        args.insert(-1, 'not')
+        if args[-2] != 'not':
+            args.insert(-1, 'not')
         args.append('or not')
     elif stdinp[x] == '$':
-        args.insert(-1, 'not')
+        if args[-2] != 'not':
+            args.insert(-1, 'not')
         args.append('and not')
     elif stdinp[x] in list(rep):
         args.append(rep[stdinp[x]])
@@ -66,7 +68,7 @@ while any(g == '0' for g in gate):
     gate = next(gate)
 eq1 = eq
 stdout += '\n'+calc(gate)
-doc.getElementById("SYSRTN").innerHTML = f'[{eq2}]'+eq2
+doc.getElementById("SYSRTN").innerHTML = f'[{eq2}]'
 doc.getElementById("SYSOUT").innerHTML = stdout
 doc.getElementById("SYSERR").innerHTML = """\
 A&B ---- A AND B
