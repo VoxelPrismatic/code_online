@@ -24,12 +24,10 @@ for x in range(len(stdinp)-1):
             args.append('and')
         args.append('not')
     elif stdinp[x] == '~':
-        if len(args) or args[-2] != 'not':
-            args.insert(-1, 'not')
+        args.insert(-1, '?n')
         args.append('or not')
     elif stdinp[x] == '$':
-        if len(args) and args[-2] != 'not':
-            args.insert(-1, 'not')
+        args.insert(-1, '?n')
         args.append('and not')
     elif stdinp[x] in list(rep):
         args.append(rep[stdinp[x]])
@@ -44,6 +42,8 @@ eq = ' '.join(args)
 rep = {' or ': '] OR [',
        'and': 'AND',
        ' != ': '-XOR-',
+       'n? n? ': 'not ', # Prevents duplicates when using ~,$
+       'n? ': 'not ',
        'not ':'NOT-',
        ' == ': '-XNOR-',
        '(': '[',
