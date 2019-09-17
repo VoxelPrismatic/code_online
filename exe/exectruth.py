@@ -25,7 +25,7 @@ for x in range(len(stdinp)-1):
     elif stdinp[x] == '$':
         args.append('and')
         args.append('not')
-    elif not len(args) and args[-1] != 'and':
+    else:
         args.append(stdinp[x])
         if stdinp[x+1].lower() in 'abcdefghijklmnopqrstuvwxyz':
             args.append('and')
