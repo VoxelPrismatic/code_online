@@ -66,7 +66,7 @@ while any(g == '0' for g in gate):
     gate = next(gate)
 eq1 = eq
 stdout += '\n'+calc(gate)
-doc.getElementById("SYSRTN").innerHTML = f'[{eq2}]'
+doc.getElementById("SYSRTN").innerHTML = f'[{eq2}]'+eq2
 doc.getElementById("SYSOUT").innerHTML = stdout
 doc.getElementById("SYSERR").innerHTML = """\
 A&B ---- A AND B
