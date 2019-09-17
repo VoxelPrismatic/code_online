@@ -4,6 +4,14 @@ doc.getElementById("SYSINP").innerHTML = stdinp
 args = []
 gate = []
 lttr = []
+rep = {'&': 'and',
+       '+': 'or',
+       '~': 'or not',
+       '*': '==',
+       '?': '!=',
+       '$': 'and not',
+       '[': '(',
+       ']': ')'}
 for x in range(len(stdinp)-1):
     if stdinp[x] == ' ':
         continue
@@ -11,20 +19,8 @@ for x in range(len(stdinp)-1):
         if len(args) and args[-1].lower() in 'abcdefghijklmnopqrstuvwxyz':
             args.append('and')
         args.append('not')
-    elif stdinp[x] == '&':
-        args.append('and')
-    elif stdinp[x] == '+':
-        args.append('or')
-    elif stdinp[x] == '~':
-        args.append('or')
-        args.append('not')
-    elif stdinp[x] == '*':
-        args.append('==')
-    elif stdinp[x] == '?':
-        args.append('!=')
-    elif stdinp[x] == '$':
-        args.append('and')
-        args.append('not')
+    elif stdinp in list(rep):
+        args.append(rep[stdinp[x]])
     else:
         args.append(stdinp[x])
         if stdinp[x+1].lower() in 'abcdefghijklmnopqrstuvwxyz':
@@ -37,8 +33,10 @@ rep = {' or ': '] OR [',
        'and': 'AND',
        ' != ': '-XOR-',
        'not ':'NOT-',
-       ' == ': '-XNOR-'}
-eq2 = eq
+       ' == ': '-XNOR-',
+       '(': '[',
+       ')': ']'}
+eq2 = eq 
 for re in rep:
     eq2 = eq2.replace(re,rep[re])
 doc.getElementById("SYSRTN").innerHTML = f'[{eq2}]'
