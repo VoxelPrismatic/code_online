@@ -6,10 +6,8 @@ gate = []
 lttr = []
 rep = {'&': 'and',
        '+': 'or',
-       '~': 'or not',
        '*': '==',
        '?': '!=',
-       '$': 'and not',
        '[': '(',
        ']': ')',
        '(': '(',
@@ -24,10 +22,10 @@ for x in range(len(stdinp)-1):
             args.append('and')
         args.append('not')
     elif stdinp[x] == '~':
-        args.insert(-1, 'not')
-        args.append('or not')
+        args.insert(-1, 'n?')
+        args.append('or n?')
     elif stdinp[x] == '$':
-        args.insert(-1, 'not')
+        args.insert(-1, 'n?')
         args.append('and not')
     elif stdinp[x] in list(rep):
         args.append(rep[stdinp[x]])
@@ -38,7 +36,7 @@ for x in range(len(stdinp)-1):
         if stdinp[x].upper() not in lttr:
             gate.append('0')
             lttr.append(stdinp[x].upper())
-eq = ' '.join(args)
+eq = ' '.join(args).replace('n? n?','not').replace('n?','not')
 rep = {' or ': '] OR [',
        'and': 'AND',
        ' != ': '-XOR-',
