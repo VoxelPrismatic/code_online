@@ -23,6 +23,12 @@ for x in range(len(stdinp)-1):
         if len(args) and args[-1].lower() in 'abcdefghijklmnopqrstuvwxyz':
             args.append('and')
         args.append('not')
+    elif stdinp[x] == '~':
+        args.insert(-1, 'not')
+        args.append('or not')
+    elif stdinp[x] == '$':
+        args.insert(-1, 'not')
+        args.append('and not')
     elif stdinp[x] in list(rep):
         args.append(rep[stdinp[x]])
     else:
@@ -43,7 +49,6 @@ rep = {' or ': '] OR [',
 eq2 = eq 
 for re in rep:
     eq2 = eq2.replace(re,rep[re])
-doc.getElementById("SYSRTN").innerHTML = f'[{eq2}]'
 def next(gate):
     return list(f'{int("".join(gate),2)+1:b}'.zfill(len(gate)))
 def calc(gate):
@@ -61,5 +66,17 @@ while any(g == '0' for g in gate):
     gate = next(gate)
 eq1 = eq
 stdout += '\n'+calc(gate)
-doc.getElementById("SYSOUT").innerHTML = stdout
-doc.getElementById("SYSERR").innerHTML = "SYNTAX: A!BC+D?E~F*G - [A AND NOT B AND C] OR [D XOR E] OR [NOT F XNOR G] "
+doc.getElementById("SYSRTN").innerHTML = f'[{eq2}]'
+doc.getElementById("SYSRTN").innerHTML = stdout
+doc.getElementById("SYSERR").innerHTML = """\
+A&B ---- A AND B
+AB ----- A AND B
+A+B ---- A OR B
+A?B ---- A XOR B
+A*B ---- A XNOR B
+A$B ---- NOT A AND NOT B
+A~B ---- NOT A OR NOT B
+A[B+C] - A AND [B OR C]
+A(B+C) - A AND [B OR C]
+A:B+C; - A AND [B OR C]
+"""
