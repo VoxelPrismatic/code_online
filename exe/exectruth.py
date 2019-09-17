@@ -51,6 +51,7 @@ rep = {' or ': '] OR [',
 eq2 = eq 
 for re in rep:
     eq2 = eq2.replace(re,rep[re])
+doc.getElementById("SYSRTN").innerHTML = f'[{eq2}]'
 def next(gate):
     return list(f'{int("".join(gate),2)+1:b}'.zfill(len(gate)))
 def calc(gate):
@@ -68,7 +69,6 @@ while any(g == '0' for g in gate):
     gate = next(gate)
 eq1 = eq
 stdout += '\n'+calc(gate)
-doc.getElementById("SYSRTN").innerHTML = f'[{eq2}]'
 doc.getElementById("SYSOUT").innerHTML = stdout
 doc.getElementById("SYSERR").innerHTML = """\
 A&B ---- A AND B
