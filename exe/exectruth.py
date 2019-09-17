@@ -19,7 +19,7 @@ for x in range(len(stdinp)-1):
         if len(args) and args[-1].lower() in 'abcdefghijklmnopqrstuvwxyz':
             args.append('and')
         args.append('not')
-    elif stdinp in list(rep):
+    elif stdinp[x] in list(rep):
         args.append(rep[stdinp[x]])
     else:
         args.append(stdinp[x])
