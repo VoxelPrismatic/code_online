@@ -49,7 +49,7 @@ rep = {' or ': '] OR [',
 eq2 = eq 
 for re in rep:
     eq2 = eq2.replace(re,rep[re])
-doc.getElementById("SYSRTN").innerHTML = f'[{eq2}]'
+doc.getElementById("SYSRTN").innerHTML = f'[{eq}]'
 def next(gate):
     return list(f'{int("".join(gate),2)+1:b}'.zfill(len(gate)))
 def calc(gate):
