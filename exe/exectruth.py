@@ -8,7 +8,7 @@ for x in range(len(stdinp)-1):
     if stdinp[x] == ' ':
         continue
     if stdinp[x] == '!':
-        if len(args) and args[-1] in 'abcdefghijklmnopqrstuvwxyz':
+        if len(args) and args[-1].lower() in 'abcdefghijklmnopqrstuvwxyz':
             args.append('and')
         args.append('not')
     elif stdinp[x] == '&':
