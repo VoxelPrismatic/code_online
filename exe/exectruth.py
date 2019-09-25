@@ -31,6 +31,8 @@ for x in range(len(stdinp)-1):
         args.append('and not')
     elif stdinp[x] in list(rep):
         args.append(rep[stdinp[x]])
+    elif stdinp[x] == '|':
+        args.append('|')
     else:
         args.append(stdinp[x])
         if stdinp[x+1].lower() in 'abcdefghijklmnopqrstuvwxyz':
@@ -54,10 +56,12 @@ def next(gate):
 def calc(gate):
     st = ""
     eq1 = eq
-    for y in range(len(lttr)):
-        eq1 = eq1.replace(lttr[y],gate[y])
-        st += gate[y] + " "
-    st += f"-{int(eval(eq1))}-"
+    for eq1 in eq.split('|')
+        for y in range(len(lttr)):
+            eq1 = eq1.replace(lttr[y],gate[y])
+            st += gate[y] + " "
+        st += f"-{int(eval(eq1))}-"
+        st += " | "
     return st
 stdout = ' '.join(lttr) + ' OUT'
 stdout += '\n'+'-'*len(stdout)
