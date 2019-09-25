@@ -62,8 +62,8 @@ def calc(gate):
             st += gate[y] + " "
         st += f"-{int(eval(eq1))}-"
         st += " | "
-    return st
-stdout = ' | '.join(' '.join(lttr) + ' OUT' for x in eq.split('|'))
+    return '| '+st+' |'
+stdout = '| '+' | '.join(' '.join(lttr) + ' OUT' for x in eq.split('|'))+' |'
 stdout += '\n'+'-'*len(stdout)
 while any(g == '0' for g in gate):
     stdout += '\n'+calc(gate)
