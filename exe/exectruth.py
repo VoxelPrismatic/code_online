@@ -51,7 +51,9 @@ rep = {' or ': '] OR [',
        '(': '[',
        ')': ']',
        'True': 'TRUE',
-       'False': 'FALSE'}
+       'False': 'FALSE',
+       '[ ': '[',
+       ' ]': ']'}
 eq2 = eq 
 for re in rep:
     eq2 = eq2.replace(re,rep[re])
