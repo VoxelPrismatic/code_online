@@ -1,4 +1,4 @@
-from browser import document as doc, alert, window as win
+from browser import document as doc, alert
 stdinp = (doc.getElementById("SYSINP").innerHTML or "A")+" "
 doc.getElementById("SYSINP").innerHTML = stdinp
 args = []
@@ -72,8 +72,6 @@ def calc(gate):
     return '| '+st
 stdout = '| '+' | '.join(' '.join(lttr+['OUT']) for x in eq.split('|'))+' |'
 stdout += '\n'+'-'*len(stdout)
-doc.getElementById("SYSERR").innerHTML = '0'
-timer = win.setInterval(update(),10)
 while any(g == '0' for g in gate):
     stdout += '\n'+calc(gate)
     gate = next(gate)
