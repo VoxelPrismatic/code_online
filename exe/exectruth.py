@@ -56,7 +56,7 @@ def next(gate):
 def calc(gate):
     st = ""
     eq1 = eq
-    for eq1 in eq.split('|')
+    for eq1 in eq.split('|'):
         for y in range(len(lttr)):
             eq1 = eq1.replace(lttr[y],gate[y])
             st += gate[y] + " "
