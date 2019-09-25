@@ -73,13 +73,10 @@ def calc(gate):
 stdout = '| '+' | '.join(' '.join(lttr+['OUT']) for x in eq.split('|'))+' |'
 stdout += '\n'+'-'*len(stdout)
 doc.getElementById("SYSERR").innerHTML = '0'
-def update():
-    doc.getElementById("SYSERR").innerHTML = str(int(doc.getElementById("SYSERR").innerHTML)+1)
 timer = win.setInterval(update(),10)
 while any(g == '0' for g in gate):
     stdout += '\n'+calc(gate)
     gate = next(gate)
-win.clearInterval(timer)
 eq1 = eq
 stdout += '\n'+calc(gate)
 doc.getElementById("SYSRTN").innerHTML = f'[{eq2}]'
