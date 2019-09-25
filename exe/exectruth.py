@@ -4,7 +4,7 @@ doc.getElementById("SYSINP").innerHTML = stdinp
 args = []
 gate = []
 lttr = []
-rep = {'&': 'and',
+rep = {'.': 'and',
        '+': 'or',
        '-': 'or not',
        '/': 'and not',
@@ -15,7 +15,9 @@ rep = {'&': 'and',
        '(': '(',
        ')': ')',
        ':': '(',
-       ';': ')'}
+       ';': ')',
+       '0': 'False',
+       '1': 'True'}
 for x in range(len(stdinp)-1):
     if stdinp[x] == ' ':
         continue
@@ -47,7 +49,9 @@ rep = {' or ': '] OR [',
        'not ':'NOT-',
        ' == ': '-XNOR-',
        '(': '[',
-       ')': ']'}
+       ')': ']',
+       'True': 'TRUE',
+       'False': 'FALSE'}
 eq2 = eq 
 for re in rep:
     eq2 = eq2.replace(re,rep[re])
@@ -73,7 +77,7 @@ stdout += '\n'+calc(gate)
 doc.getElementById("SYSRTN").innerHTML = f'[{eq2}]'.replace('|',']\n[')
 doc.getElementById("SYSOUT").innerHTML = stdout
 doc.getElementById("SYSERR").innerHTML = """\
-A&B ---- A AND B
+A.B ---- A AND B
 A/B ---- A AND NOT B
 AB ----- A AND B
 A+B ---- A OR B
@@ -85,4 +89,5 @@ A~B ---- NOT A OR NOT B
 A[B+C] - A AND [B OR C]
 A(B+C) - A AND [B OR C]
 A:B+C; - A AND [B OR C]
+1+0 ---- TRUE OR FALSE
 """
