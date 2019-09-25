@@ -6,6 +6,8 @@ gate = []
 lttr = []
 rep = {'&': 'and',
        '+': 'or',
+       '-': 'or not',
+       '/': 'and not',
        '*': '==',
        '?': '!=',
        '[': '(',
@@ -68,8 +70,10 @@ doc.getElementById("SYSRTN").innerHTML = f'[{eq2}]'
 doc.getElementById("SYSOUT").innerHTML = stdout
 doc.getElementById("SYSERR").innerHTML = """\
 A&B ---- A AND B
+A/B ---- A AND NOT B
 AB ----- A AND B
 A+B ---- A OR B
+A-B ---- A OR NOT B
 A?B ---- A XOR B
 A*B ---- A XNOR B
 A$B ---- NOT A AND NOT B
