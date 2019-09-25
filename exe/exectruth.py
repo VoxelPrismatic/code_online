@@ -62,7 +62,7 @@ def calc(gate):
             st += gate[y] + " "
         st += f"-{int(eval(eq1))}-"
         st += " | "
-    return '| '+st+' |'
+    return '| '+st
 stdout = '| '+' | '.join(' '.join(lttr) + ' OUT' for x in eq.split('|'))+' |'
 stdout += '\n'+'-'*len(stdout)
 while any(g == '0' for g in gate):
@@ -71,7 +71,7 @@ while any(g == '0' for g in gate):
 eq1 = eq
 stdout += '\n'+calc(gate)
 doc.getElementById("SYSRTN").innerHTML = f'[{eq2}]'
-doc.getElementById("SYSOUT").innerHTML = stdout
+doc.getElementById("SYSOUT").innerHTML = stdout.replace('|',']\n[')
 doc.getElementById("SYSERR").innerHTML = """\
 A&B ---- A AND B
 A/B ---- A AND NOT B
