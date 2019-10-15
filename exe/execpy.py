@@ -16,6 +16,6 @@ try:
 except Exception as ex: 
     stderr = str(ex)
 doc.getElementById("SYSINP").innerHTML = (stdinp or ";")
-doc.getElementById("SYSOUT").innerHTML = (stdout or "~")
-doc.getElementById("SYSERR").innerHTML = (stderr or "~")
-doc.getElementById("SYSRTN").innerHTML = f'{str(type(stdrtn))[8:-2]} ] {stdrtn}'
+doc.getElementById("SYSOUT").innerHTML = (stdout or "~").replace('>', '&gt;').replace('<', '&lt;')
+doc.getElementById("SYSERR").innerHTML = (stderr or "~").replace('>', '&gt;').replace('<', '&lt;')
+doc.getElementById("SYSRTN").innerHTML = f'{str(type(stdrtn))[8:-2]} ] {stdrtn}'.replace('>', '&gt;').replace('<', '&lt;')
