@@ -3,7 +3,9 @@ for x in ['SYSLNG','SYSINP','SYSOUT','SYSERR','SYSRTN']:
     itm = document.getElementById(x)
     rep = {'\n':'<br>',
            '\t': '    ',
-           ' ': '\x0b \x0b'}
+           ' ': ' \u200b',
+           '>': '&gt;',
+           '<': '&lt;'}
     for r in rep:
         itm.innerHTML = itm.innerHTML.replace(r, rep[r])
 document.body.style.backgroundColor = "#112222ff"
